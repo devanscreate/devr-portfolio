@@ -59,38 +59,38 @@ const principles = [
 ];
 ---
 
-<section id="standards" class="py-20 border-t border-slate-850 relative">
+<section id="standards" class="py-20 border-t border-slate-200 dark:border-slate-850 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 shadow-sm">
         <Gauge class="w-3.5 h-3.5" />
         <span data-i18n="standards.badge">Operational Philosophy</span>
       </div>
-      <h2 data-i18n="standards.title" class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+      <h2 data-i18n="standards.title" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Production Engineering Standards
       </h2>
-      <p data-i18n="standards.subtitle" class="mt-4 text-slate-400 max-w-2xl text-base leading-relaxed">
+      <p data-i18n="standards.subtitle" class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl text-base leading-relaxed">
         Writing code that runs locally is only 20% of the job. Here is the operational framework and reliability doctrine I apply to every production workload.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {principles.map((item) => (
-        <div class="rounded-2xl border border-slate-800 bg-[#0c121e]/70 backdrop-blur-md p-6 flex flex-col justify-between hover:border-slate-700 transition-colors">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/70 backdrop-blur-md p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-colors shadow-sm">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-cyan-400">
+              <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-cyan-600 dark:text-cyan-400">
                 <item.icon class="w-5 h-5" />
               </div>
-              <span data-i18n={item.metricKey} class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-400">
+              <span data-i18n={item.metricKey} class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400">
                 {item.metric}
               </span>
             </div>
-            <h3 data-i18n={item.titleKey} class="text-lg font-bold text-white tracking-tight mb-2">{item.title}</h3>
-            <p data-i18n={item.descKey} class="text-xs sm:text-sm text-slate-400 leading-relaxed">{item.description}</p>
+            <h3 data-i18n={item.titleKey} class="text-lg font-bold text-slate-900 dark:text-white tracking-tight mb-2">{item.title}</h3>
+            <p data-i18n={item.descKey} class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.description}</p>
           </div>
-          <div class="mt-5 pt-4 border-t border-slate-850 flex items-center gap-2 text-[11px] font-mono text-slate-500">
-            <CheckCircle2 class="w-3.5 h-3.5 text-emerald-400" />
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-850 flex items-center gap-2 text-[11px] font-mono text-slate-500">
+            <CheckCircle2 class="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
             <span data-i18n="standards.enforced">Enforced in CI/CD pipeline</span>
           </div>
         </div>

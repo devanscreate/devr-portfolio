@@ -4,79 +4,79 @@ import { Mail, Send, Shield, Clock, MapPin, Github, Linkedin } from 'lucide-astr
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
 ---
 
-<section id="contact" class="py-20 border-t border-slate-850 relative">
+<section id="contact" class="py-20 border-t border-slate-200 dark:border-slate-850 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-widest mb-3 shadow-sm">
         <Mail class="w-3.5 h-3.5" />
         <span data-i18n="contact.badge">Direct Transmission Channel</span>
       </div>
-      <h2 data-i18n="contact.title" class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+      <h2 data-i18n="contact.title" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Initialize Contact
       </h2>
-      <p data-i18n="contact.subtitle" class="mt-4 text-slate-400 max-w-2xl text-base leading-relaxed">
+      <p data-i18n="contact.subtitle" class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl text-base leading-relaxed">
         Looking for a Lead Full-Stack Engineer, DevOps/SRE Architect, or cloud infrastructure consultant? Send a message directly to my inbox with zero intermediaries.
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Direct Info -->
-      <div class="lg:col-span-5 rounded-2xl border border-slate-800 bg-[#0c121e]/70 backdrop-blur-md p-6 sm:p-8 space-y-6">
+      <div class="lg:col-span-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/70 backdrop-blur-md p-6 sm:p-8 space-y-6 shadow-sm">
         <div>
-          <h3 data-i18n="contact.availTitle" class="text-xl font-bold text-white tracking-tight">Direct Availability</h3>
-          <p data-i18n="contact.availSub" class="text-xs text-slate-400 mt-1">Available for full-time distributed roles & selective architectural audits.</p>
+          <h3 data-i18n="contact.availTitle" class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Direct Availability</h3>
+          <p data-i18n="contact.availSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Available for full-time distributed roles & selective architectural audits.</p>
         </div>
 
-        <div class="space-y-4 text-sm font-mono text-slate-300">
-          <div class="p-3.5 rounded-xl border border-slate-800/80 bg-slate-900/50 flex items-start gap-3">
-            <Clock class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+        <div class="space-y-4 text-sm font-mono text-slate-700 dark:text-slate-300">
+          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-start gap-3">
+            <Clock class="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
             <div>
-              <span data-i18n="contact.slaLabel" class="text-xs text-slate-400 block">Response Time SLA</span>
-              <span data-i18n="contact.slaVal" class="text-slate-200 font-semibold">&lt; 24 Hours Response Guarantee</span>
+              <span data-i18n="contact.slaLabel" class="text-xs text-slate-500 dark:text-slate-400 block">Response Time SLA</span>
+              <span class="text-slate-800 dark:text-slate-200 font-semibold">&lt; 24 Hours Response Guarantee</span>
             </div>
           </div>
 
-          <div class="p-3.5 rounded-xl border border-slate-800/80 bg-slate-900/50 flex items-start gap-3">
-            <MapPin class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-start gap-3">
+            <MapPin class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <span data-i18n="contact.locLabel" class="text-xs text-slate-400 block">Location & Flexibility</span>
-              <span data-i18n="contact.locVal" class="text-slate-200 font-semibold">Remote / Hybrid (Global Timezones)</span>
+              <span data-i18n="contact.locLabel" class="text-xs text-slate-500 dark:text-slate-400 block">Location & Flexibility</span>
+              <span class="text-slate-800 dark:text-slate-200 font-semibold">Remote / Hybrid (Global Timezones)</span>
             </div>
           </div>
 
-          <div class="p-3.5 rounded-xl border border-slate-800/80 bg-slate-900/50 flex items-start gap-3">
-            <Mail class="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
+          <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-start gap-3">
+            <Mail class="w-4 h-4 text-violet-600 dark:text-violet-400 shrink-0 mt-0.5" />
             <div>
-              <span data-i18n="contact.emailLabel" class="text-xs text-slate-400 block">Direct Email</span>
-              <a href="mailto:alex.vance.eng@example.com" class="text-cyan-400 hover:underline">
+              <span data-i18n="contact.emailLabel" class="text-xs text-slate-500 dark:text-slate-400 block">Direct Email</span>
+              <a href="mailto:alex.vance.eng@example.com" class="text-cyan-600 dark:text-cyan-400 hover:underline">
                 alex.vance.eng@example.com
               </a>
             </div>
           </div>
         </div>
 
-        <div class="pt-4 border-t border-slate-850">
-          <span data-i18n="contact.profilesLabel" class="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-3">Professional Profiles</span>
+        <div class="pt-4 border-t border-slate-200 dark:border-slate-850">
+          <span data-i18n="contact.profilesLabel" class="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-3">Professional Profiles</span>
           <div class="flex items-center gap-3">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-800 bg-slate-900/80 text-xs text-slate-300 hover:text-white transition-colors">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors shadow-sm">
               <Github class="w-4 h-4" />
               <span>GitHub</span>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-800 bg-slate-900/80 text-xs text-slate-300 hover:text-white transition-colors">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors shadow-sm">
               <Linkedin class="w-4 h-4" />
               <span>LinkedIn</span>
             </a>
           </div>
         </div>
 
-        <div class="p-3 rounded-lg border border-slate-800 bg-slate-950/60 text-[11px] text-slate-400 font-mono flex items-center gap-2">
-          <Shield class="w-4 h-4 text-emerald-400 shrink-0" />
+        <div class="p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950/60 text-[11px] text-slate-600 dark:text-slate-400 font-mono flex items-center gap-2">
+          <Shield class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
           <span data-i18n="contact.web3Note">Serverless form powered by Web3Forms. Zero database storage of contact logs.</span>
         </div>
       </div>
 
       <!-- Static Web3Forms Form -->
-      <div class="lg:col-span-7 rounded-2xl border border-slate-800 bg-[#0c121e]/90 backdrop-blur-md p-6 sm:p-8 shadow-xl">
+      <div class="lg:col-span-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/90 backdrop-blur-md p-6 sm:p-8 shadow-xl">
         <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5" id="contact-form">
           <input type="hidden" name="access_key" value={accessKey} />
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
@@ -85,7 +85,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1.5">
-              <label for="name" data-i18n="contact.formNameLabel" class="block text-xs font-mono text-slate-300">
+              <label for="name" data-i18n="contact.formNameLabel" class="block text-xs font-mono text-slate-700 dark:text-slate-300">
                 Your Name
               </label>
               <input
@@ -94,11 +94,11 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
                 id="name"
                 required
                 placeholder="Jane Doe"
-                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-800 bg-slate-900/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans"
               />
             </div>
             <div class="space-y-1.5">
-              <label for="email" data-i18n="contact.formEmailLabel" class="block text-xs font-mono text-slate-300">
+              <label for="email" data-i18n="contact.formEmailLabel" class="block text-xs font-mono text-slate-700 dark:text-slate-300">
                 Email Address
               </label>
               <input
@@ -107,17 +107,17 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
                 id="email"
                 required
                 placeholder="jane@company.com"
-                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-800 bg-slate-900/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans"
               />
             </div>
           </div>
 
           <div class="space-y-1.5">
-            <label for="role_inquiry" data-i18n="contact.formFocusLabel" class="block text-xs font-mono text-slate-300">Inquiry Focus</label>
+            <label for="role_inquiry" data-i18n="contact.formFocusLabel" class="block text-xs font-mono text-slate-700 dark:text-slate-300">Inquiry Focus</label>
             <select
               name="role_inquiry"
               id="role_inquiry"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-800 bg-slate-900/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans"
             >
               <option value="Senior Full-Stack Developer Role" data-i18n="contact.opt1">Senior Full-Stack Developer Opportunity</option>
               <option value="DevOps / SRE Architect Role" data-i18n="contact.opt2">DevOps / SRE Architect Opportunity</option>
@@ -127,7 +127,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
           </div>
 
           <div class="space-y-1.5">
-            <label for="message" data-i18n="contact.formMsgLabel" class="block text-xs font-mono text-slate-300">
+            <label for="message" data-i18n="contact.formMsgLabel" class="block text-xs font-mono text-slate-700 dark:text-slate-300">
               Message / Specification
             </label>
             <textarea
@@ -137,7 +137,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
               required
               data-i18n-placeholder="contact.formMsgPlaceholder"
               placeholder="Tell me about your tech stack, system challenges, or project requirements..."
-              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-800 bg-slate-900/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans resize-y"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans resize-y"
             ></textarea>
           </div>
 
