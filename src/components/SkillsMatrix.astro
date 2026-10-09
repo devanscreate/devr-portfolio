@@ -1,86 +1,57 @@
 ---
-import { Code2, Server, Cloud, Cpu, Database, GitBranch, Layers, ShieldCheck, Activity } from 'lucide-astro';
+import { Code2, Server, Cloud, Database, Network, ShieldCheck, Terminal, Cpu } from 'lucide-astro';
 
-const appDevCategories = [
+const categorizedSkills = [
   {
     title: "Frontend Engineering",
     icon: Code2,
     accent: "text-cyan-500 dark:text-cyan-400",
+    badge: "Layer 7 UI",
     skills: [
-      { name: "TypeScript", level: "Core / Advanced" },
-      { name: "React / Next.js", level: "Production Standard" },
-      { name: "Astro", level: "Static & Islands" },
-      { name: "Vue.js", level: "Production Standard" },
-      { name: "Tailwind CSS", level: "Design Systems" },
-      { name: "TanStack Query", level: "Async State" },
+      { name: "Vue.js", level: "Production Core / Pinia / Vue Router" },
+      { name: "Tailwind CSS", level: "Design Systems & Responsive UIs" },
+      { name: "TypeScript", level: "Strict Typing & Client Contracts" },
+      { name: "React", level: "Single-Page Applications & Hooks" },
+      { name: "HTML5 Canvas", level: "High-FPS Data Visualization" },
     ],
   },
   {
     title: "Backend & Systems Logic",
     icon: Server,
     accent: "text-blue-500 dark:text-blue-400",
+    badge: "Core Services",
     skills: [
-      { name: "Go (Golang)", level: "Concurrent Services" },
-      { name: "Node.js / Express / Nest", level: "High Throughput" },
-      { name: "Python / FastAPI", level: "Async APIs" },
-      { name: "gRPC & Protobuf", level: "Microservices" },
-      { name: "REST & OpenAPI", level: "Contract-Driven" },
-      { name: "GraphQL", level: "Unified Schemas" },
+      { name: "Python (FastAPI)", level: "Async APIs & Worker Daemons" },
+      { name: "PHP (Laravel)", level: "Enterprise MVC & Eloquent" },
+      { name: "WebSockets & TCP Sockets", level: "Real-Time Packet Streaming" },
+      { name: "RESTful API Architecture", level: "OpenAPI Specification Contracts" },
+      { name: "Process Management", level: "Multi-threading & Subprocesses" },
     ],
   },
   {
-    title: "Data Stores & Streaming",
-    icon: Database,
-    accent: "text-teal-500 dark:text-teal-400",
-    skills: [
-      { name: "PostgreSQL", level: "Partitioning & Indexing" },
-      { name: "Redis", level: "PubSub & Distributed Locks" },
-      { name: "Apache Kafka", level: "Event Sourcing" },
-      { name: "ClickHouse", level: "OLAP Analytics" },
-      { name: "Prisma & Drizzle", level: "Type-Safe Migrations" },
-      { name: "MongoDB", level: "Document Store" },
-    ],
-  },
-];
-
-const systemsSRECategories = [
-  {
-    title: "Containers & Orchestration",
-    icon: Layers,
+    title: "Infrastructure & DevOps",
+    icon: Cloud,
     accent: "text-violet-500 dark:text-violet-400",
+    badge: "Platform & Cloud",
     skills: [
-      { name: "Kubernetes (K8s)", level: "Cluster Admin & HPA" },
-      { name: "Docker & Containerd", level: "Multi-Stage Builds" },
-      { name: "Helm Charts", level: "Templated Packaging" },
-      { name: "ArgoCD", level: "GitOps Declarative" },
-      { name: "Istio & Envoy", level: "Service Mesh & mTLS" },
-      { name: "Docker Swarm", level: "Lightweight Deploy" },
+      { name: "Linux (Debian / Ubuntu)", level: "Systemd Daemons & Kernel Tuning" },
+      { name: "Nginx Gateway", level: "Reverse Proxy, TLS & Load Balancing" },
+      { name: "Docker & Compose", level: "Multi-Stage Minimal Builds" },
+      { name: "GitOps & CI/CD", level: "Automated GitHub Actions Pipelines" },
+      { name: "Server Hardening", level: "UFW, Fail2ban, Least Privilege" },
     ],
   },
   {
-    title: "Infrastructure as Code & CI/CD",
-    icon: GitBranch,
-    accent: "text-purple-500 dark:text-purple-400",
-    skills: [
-      { name: "Terraform / OpenTofu", level: "State & Modules" },
-      { name: "GitHub Actions", level: "Canary & Matrix Pipelines" },
-      { name: "GitLab CI", level: "Enterprise Runners" },
-      { name: "Ansible", level: "Config Automation" },
-      { name: "Cloudflare Pages/Workers", level: "Edge Execution" },
-      { name: "AWS & GCP Core", level: "VPC, IAM, S3, EKS" },
-    ],
-  },
-  {
-    title: "Observability & Linux Systems",
-    icon: Activity,
+    title: "Databases & Networking",
+    icon: Database,
     accent: "text-emerald-500 dark:text-emerald-400",
+    badge: "Data & Mesh",
     skills: [
-      { name: "Prometheus & Alertmanager", level: "SLO/SLA Metrics" },
-      { name: "Grafana Dashboards", level: "Golden Signals" },
-      { name: "OpenTelemetry (OTel)", level: "Distributed Tracing" },
-      { name: "Nginx & Caddy Proxy", level: "Reverse Proxy & TLS" },
-      { name: "Linux Internals (Debian)", level: "Kernel & Systemd" },
-      { name: "Network Security & eBPF", level: "Packet Flow & IPTables" },
+      { name: "MySQL / MariaDB", level: "Schema Design, Indexing & Tuning" },
+      { name: "PostgreSQL", level: "Relational Modeling & Transactions" },
+      { name: "Microsoft SQL Server", level: "Enterprise Stored Procedures" },
+      { name: "SSH Tunneling & Reverse Sockets", level: "Encrypted Port-Forwarding" },
+      { name: "Network Routing & DNS", level: "Subnetting, NAT & Cloudflare Edge" },
     ],
   },
 ];
@@ -88,93 +59,49 @@ const systemsSRECategories = [
 
 <section id="skills" class="py-20 border-t border-slate-200 dark:border-slate-850 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
     <div class="flex flex-col items-center text-center mb-16">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-widest mb-3 shadow-sm">
         <Cpu class="w-3.5 h-3.5" />
         <span data-i18n="skills.badge">Technical Architecture Matrix</span>
       </div>
       <h2 data-i18n="skills.title" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Dual-Discipline Engineering Depth
+        Categorized Engineering Depth
       </h2>
       <p data-i18n="skills.subtitle" class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl text-base leading-relaxed">
-        Engineered for full ownership across the delivery lifecycle: from writing memory-efficient application logic to provisioning self-healing multi-node cloud clusters.
+        Structured by hands-on production depth across frontend client applications, robust backend services, system internals, and network routing.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-      <!-- App Dev Track -->
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/70 backdrop-blur-md p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-850">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400">
-              <Code2 class="w-6 h-6" />
+    <!-- 4-Grid Categorized Skill Pillars -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      {categorizedSkills.map((cat) => (
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/70 backdrop-blur-md p-6 sm:p-7 space-y-5 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
+          <div class="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-850">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60">
+                <cat.icon class={`w-5 h-5 ${cat.accent}`} />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+                {cat.title}
+              </h3>
             </div>
-            <div>
-              <h3 data-i18n="skills.appDevTitle" class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Application Development</h3>
-              <p data-i18n="skills.appDevSub" class="text-xs text-slate-500 dark:text-slate-400 font-mono">Frontend, Microservices, Data Models & APIs</p>
-            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
+              {cat.badge}
+            </span>
           </div>
-          <span data-i18n="skills.appDevBadge" class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20">
-            Layer 7 Focus
-          </span>
-        </div>
 
-        <div class="space-y-6">
-          {appDevCategories.map((cat) => (
-            <div class="space-y-3">
-              <div class="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">
-                <cat.icon class={`w-4 h-4 ${cat.accent}`} />
-                <span>{cat.title}</span>
+          <div class="space-y-2.5">
+            {cat.skills.map((skill) => (
+              <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 transition-colors hover:border-slate-300 dark:hover:border-slate-700">
+                <span class="text-sm font-semibold text-slate-800 dark:text-slate-200">{skill.name}</span>
+                <span class="text-xs font-mono text-slate-500 dark:text-slate-400">{skill.level}</span>
               </div>
-              <div class="grid grid-cols-2 gap-2.5">
-                {cat.skills.map((skill) => (
-                  <div class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/60 flex flex-col">
-                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">{skill.name}</span>
-                    <span class="text-[10px] font-mono text-slate-500 dark:text-slate-500 mt-0.5">{skill.level}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Systems & SRE Track -->
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/70 backdrop-blur-md p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-850">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-600 dark:text-violet-400">
-              <Cloud class="w-6 h-6" />
-            </div>
-            <div>
-              <h3 data-i18n="skills.sysCloudTitle" class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Systems & Cloud Architecture</h3>
-              <p data-i18n="skills.sysCloudSub" class="text-xs text-slate-500 dark:text-slate-400 font-mono">Kubernetes, IaC, GitOps, SRE Observability</p>
-            </div>
+            ))}
           </div>
-          <span data-i18n="skills.sysCloudBadge" class="text-xs font-mono px-2.5 py-1 rounded-md bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-500/20">
-            Infrastructure Focus
-          </span>
         </div>
-
-        <div class="space-y-6">
-          {systemsSRECategories.map((cat) => (
-            <div class="space-y-3">
-              <div class="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">
-                <cat.icon class={`w-4 h-4 ${cat.accent}`} />
-                <span>{cat.title}</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2.5">
-                {cat.skills.map((skill) => (
-                  <div class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/60 flex flex-col">
-                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">{skill.name}</span>
-                    <span class="text-[10px] font-mono text-slate-500 dark:text-slate-500 mt-0.5">{skill.level}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
 
     <!-- Cross-Cutting Philosophy Bar -->
@@ -182,11 +109,12 @@ const systemsSRECategories = [
       <div class="flex items-center gap-2">
         <ShieldCheck class="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
         <span data-i18n="skills.standardsTitle" class="text-slate-800 dark:text-slate-300 font-medium">Core Engineering Standards:</span>
-        <span data-i18n="skills.standardsDesc" class="hidden md:inline">Immutable Infrastructure &bull; Automated Unit/Integration Testing &bull; Infrastructure as Code</span>
+        <span data-i18n="skills.standardsDesc" class="hidden md:inline">Least Privilege Security &bull; Immutable Deployments &bull; Idempotent Automation</span>
       </div>
       <div class="flex items-center gap-3 text-cyan-600 dark:text-cyan-400">
         <span data-i18n="skills.standardsTag">Zero Magic Deployments &bull; Everything as Code</span>
       </div>
     </div>
+
   </div>
 </section>

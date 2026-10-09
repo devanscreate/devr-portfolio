@@ -10,12 +10,12 @@ interface Props {
 }
 
 const {
-  title = "Alex Vance | Principal Full-Stack Engineer & DevOps / SRE Architect",
-  description = "Production-grade portfolio of a hybrid Software Engineer & Site Reliability Architect specializing in cloud-native platforms, high-throughput distributed systems, and automated GitOps CI/CD pipelines.",
+  title = "Devan Regiana | DevOps Engineer & Full-Stack Developer",
+  description = "Production portfolio of Devan Regiana - DevOps Engineer & Full-Stack Developer specializing in high-reliability infrastructure, decoupled socket bridges, Linux server hardening, and zero-downtime CI/CD automation.",
   image = "/og-image.png",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pages.dev');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr-portfolio.31januaridd.workers.dev');
 ---
 
 <!doctype html>
@@ -73,15 +73,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Alex Vance",
-      "jobTitle": "Full-Stack Engineer & DevOps/SRE Architect",
+      "name": "Devan Regiana",
+      "jobTitle": "DevOps Engineer & Full-Stack Developer",
       "url": canonicalURL,
       "knowsAbout": [
-        "Distributed Systems",
-        "Site Reliability Engineering",
-        "Kubernetes & Docker",
-        "Continuous Integration & Continuous Delivery",
-        "Cloud Architecture"
+        "Linux Systems & Daemons",
+        "TCP Sockets & WebSockets",
+        "Python (FastAPI) & PHP (Laravel)",
+        "Docker & Containerization",
+        "Nginx Reverse Proxy & Load Balancing",
+        "Continuous Integration & Continuous Delivery (CI/CD)"
       ]
     })} />
   </head>
@@ -91,19 +92,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
 
     <header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/85 dark:bg-[#080c14]/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <!-- Brand / Identity -->
         <a href="/" class="flex items-center gap-3 group">
           <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-500 dark:text-cyan-400 group-hover:border-cyan-400 transition-colors">
             <Terminal class="w-5 h-5" />
           </div>
           <div class="flex flex-col">
             <span class="font-mono font-bold text-sm text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-              alex.dev
+              devan.dev
               <span class="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" title="System Operational"></span>
             </span>
-            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-widest uppercase">FullStack &bull; DevOps/SRE</span>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-widest uppercase">DevOps &bull; Full-Stack</span>
           </div>
         </a>
 
+        <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
           <a href="#projects" data-i18n="nav.projects" class="px-3.5 py-1.5 rounded-md hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">Projects</a>
           <a href="#skills" data-i18n="nav.skills" class="px-3.5 py-1.5 rounded-md hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">Skills Matrix</a>
@@ -111,6 +114,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
           <a href="#contact" data-i18n="nav.contact" class="px-3.5 py-1.5 rounded-md hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">Contact</a>
         </nav>
 
+        <!-- Right Side Controls (Theme, Language, Social, CTA) -->
         <div class="flex items-center gap-1.5 sm:gap-2.5">
           <!-- Dark / Light Theme Toggle -->
           <button
@@ -120,9 +124,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
             title="Ganti Tema (Gelap / Terang)"
             aria-label="Toggle Dark/Light Mode"
           >
-            <!-- Moon for Dark Mode -->
             <Moon id="icon-moon" class="w-4 h-4 text-cyan-400 hidden" />
-            <!-- Sun for Light Mode -->
             <Sun id="icon-sun" class="w-4 h-4 text-amber-500 hidden" />
           </button>
 
@@ -150,14 +152,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
             </button>
           </div>
 
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-sm" aria-label="GitHub">
+          <a href="https://github.com/devanscreate" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-sm" aria-label="GitHub Profile">
             <Github class="w-4 h-4" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-sm" aria-label="LinkedIn">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-sm" aria-label="LinkedIn Profile">
             <Linkedin class="w-4 h-4" />
           </a>
           <a href="#contact" data-i18n="nav.hireMe" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono px-3.5 py-2 rounded-lg bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all font-medium">
-            <span>Hire Me</span>
+            <span>Hubungi Saya</span>
             <span>&rarr;</span>
           </a>
         </div>
@@ -168,6 +170,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
       <slot />
     </main>
 
+    <!-- Production Footer with Devan Regiana Branding -->
     <footer class="border-t border-slate-200 dark:border-slate-850 bg-slate-100 dark:bg-[#060910] z-10 relative mt-24 py-12 text-slate-600 dark:text-slate-400 text-xs font-mono transition-colors">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-slate-800/60">
@@ -177,7 +180,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
               <span data-i18n="footer.engineered">Engineered with Astro SSG & Tailwind CSS</span>
             </div>
             <p data-i18n="footer.performance" class="text-slate-500 dark:text-slate-400 text-[11px] mt-1">
-              Zero runtime JS overhead &bull; 100/100 Lighthouse SLA target &bull; Hosted on Edge CDN
+              Zero runtime JS overhead &bull; 100/100 Lighthouse SLA target &bull; Hosted on Cloudflare Edge
             </p>
           </div>
           <div class="flex items-center gap-3 bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 px-3.5 py-1.5 rounded-full shadow-sm">
@@ -187,11 +190,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pag
             </span>
             <span data-i18n="footer.operational" class="text-slate-700 dark:text-slate-300">All Systems Operational</span>
             <span class="text-slate-400 dark:text-slate-500">|</span>
-            <span data-i18n="footer.uptime" class="text-emerald-600 dark:text-emerald-400 font-semibold">99.995% Uptime</span>
+            <span data-i18n="footer.uptime" class="text-emerald-600 dark:text-emerald-400 font-semibold">Production Ready</span>
           </div>
         </div>
         <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
-          <p>&copy; {new Date().getFullYear()} Alex Vance. <span data-i18n="footer.license">Released under MIT License.</span></p>
+          <p>&copy; {new Date().getFullYear()} Devan Regiana. <span data-i18n="footer.license">Released under MIT License.</span></p>
+          <div class="flex items-center gap-4">
+            <a href="#projects" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Projects</a>
+            <a href="#skills" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Skills</a>
+            <a href="#standards" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Standards</a>
+            <a href="#contact" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Contact</a>
+          </div>
         </div>
       </div>
     </footer>

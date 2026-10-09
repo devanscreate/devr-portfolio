@@ -3,58 +3,58 @@ import { ShieldCheck, GitPullRequest, Activity, Terminal, Lock, Gauge, CheckCirc
 
 const principles = [
   {
-    icon: ShieldCheck,
+    icon: Lock,
     titleKey: "standards.card1Title",
     descKey: "standards.card1Desc",
     metricKey: "standards.card1Metric",
-    title: "12-Factor App Methodology",
-    description: "Strict isolation of configuration from code via environment variables, stateless disposable processes, and parity across local, staging, and production environments.",
-    metric: "Zero hardcoded configs",
+    title: "Least Privilege Security",
+    description: "Enforcing non-root scratch containers, strictly bounded file permissions, systemd isolation, and restrictive firewall rules.",
+    metric: "Restricted Access",
   },
   {
     icon: Terminal,
     titleKey: "standards.card2Title",
     descKey: "standards.card2Desc",
     metricKey: "standards.card2Metric",
-    title: "Infrastructure as Code (IaC)",
-    description: "Every cloud resource, DNS record, firewall rule, and Kubernetes manifest is version-controlled via Terraform and GitOps. Zero manual console clicking.",
-    metric: "100% Declarative state",
+    title: "Immutable Deployments",
+    description: "Never mutating live servers in-place. Every release builds fresh, disposable container images with verified hashes.",
+    metric: "Zero In-Place Edits",
   },
   {
     icon: GitPullRequest,
     titleKey: "standards.card3Title",
     descKey: "standards.card3Desc",
     metricKey: "standards.card3Metric",
-    title: "Automated Verification & Shift-Left",
-    description: "Rigorous CI pipelines executing static type analysis, linting, unit test suites, integration containers, and automated vulnerability scanning before merging to main.",
-    metric: "Blocked merges on failure",
-  },
-  {
-    icon: Activity,
-    titleKey: "standards.card4Title",
-    descKey: "standards.card4Desc",
-    metricKey: "standards.card4Metric",
-    title: "Continuous Observability & SLOs",
-    description: "Full instrumentation using Prometheus, Grafana, and OpenTelemetry. Tracking latency p95/p99, error rates, throughput, and automated alert routing via Alertmanager.",
-    metric: "Sub-minute incident detection",
-  },
-  {
-    icon: Lock,
-    titleKey: "standards.card5Title",
-    descKey: "standards.card5Desc",
-    metricKey: "standards.card5Metric",
-    title: "Zero-Trust & Hardened Security",
-    description: "Non-root scratch Docker containers, read-only root filesystems, automated secret rotation via HashiCorp Vault / Cloud KMS, and strict least-privilege IAM policies.",
-    metric: "Minimal attack surface",
+    title: "Idempotent Automation",
+    description: "CI/CD and configuration tasks that produce deterministic outcomes regardless of how many times they are executed.",
+    metric: "Deterministic State",
   },
   {
     icon: Gauge,
+    titleKey: "standards.card4Title",
+    descKey: "standards.card4Desc",
+    metricKey: "standards.card4Metric",
+    title: "Nginx Zero-Downtime Reloads",
+    description: "Validating configuration with syntax checks prior to graceful process reloads, preventing client connection drops.",
+    metric: "0s Connection Drops",
+  },
+  {
+    icon: ShieldCheck,
+    titleKey: "standards.card5Title",
+    descKey: "standards.card5Desc",
+    metricKey: "standards.card5Metric",
+    title: "Decoupled Fault Isolation",
+    description: "Partitioning CPU-bound workers and socket bridges from synchronous HTTP workers to prevent cascading outages.",
+    metric: "Isolated Boundaries",
+  },
+  {
+    icon: Activity,
     titleKey: "standards.card6Title",
     descKey: "standards.card6Desc",
     metricKey: "standards.card6Metric",
-    title: "Zero-Downtime Releases",
-    description: "Blue/Green and automated canary deployments using Istio and Flagger. Real-time metric evaluation with automatic rollbacks if error budgets are violated.",
-    metric: "0s deployment disruption",
+    title: "Continuous Observability & Healthchecks",
+    description: "Automated socket healthchecks, structured log aggregation, and real-time process monitoring via Linux systemd & Prometheus.",
+    metric: "Sub-Second Telemetry",
   },
 ];
 ---
@@ -70,7 +70,7 @@ const principles = [
         Production Engineering Standards
       </h2>
       <p data-i18n="standards.subtitle" class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl text-base leading-relaxed">
-        Writing code that runs locally is only 20% of the job. Here is the operational framework and reliability doctrine I apply to every production workload.
+        Practical engineering doctrine applied to every production workload to ensure reproducibility, security, and continuous reliability.
       </p>
     </div>
 
@@ -91,7 +91,7 @@ const principles = [
           </div>
           <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-850 flex items-center gap-2 text-[11px] font-mono text-slate-500">
             <CheckCircle2 class="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
-            <span data-i18n="standards.enforced">Enforced in CI/CD pipeline</span>
+            <span data-i18n="standards.enforced">Enforced in Production Workflow</span>
           </div>
         </div>
       ))}
