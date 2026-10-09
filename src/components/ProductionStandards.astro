@@ -1,39 +1,57 @@
 ---
-import { ShieldCheck, GitPullRequest, Activity, Terminal, Lock, Gauge, CheckCircle2, Cpu } from 'lucide-astro';
+import { ShieldCheck, GitPullRequest, Activity, Terminal, Lock, Gauge, CheckCircle2 } from 'lucide-astro';
 
 const principles = [
   {
     icon: ShieldCheck,
+    titleKey: "standards.card1Title",
+    descKey: "standards.card1Desc",
+    metricKey: "standards.card1Metric",
     title: "12-Factor App Methodology",
     description: "Strict isolation of configuration from code via environment variables, stateless disposable processes, and parity across local, staging, and production environments.",
     metric: "Zero hardcoded configs",
   },
   {
     icon: Terminal,
+    titleKey: "standards.card2Title",
+    descKey: "standards.card2Desc",
+    metricKey: "standards.card2Metric",
     title: "Infrastructure as Code (IaC)",
     description: "Every cloud resource, DNS record, firewall rule, and Kubernetes manifest is version-controlled via Terraform and GitOps. Zero manual console clicking.",
     metric: "100% Declarative state",
   },
   {
     icon: GitPullRequest,
+    titleKey: "standards.card3Title",
+    descKey: "standards.card3Desc",
+    metricKey: "standards.card3Metric",
     title: "Automated Verification & Shift-Left",
     description: "Rigorous CI pipelines executing static type analysis, linting, unit test suites, integration containers, and automated vulnerability scanning before merging to main.",
     metric: "Blocked merges on failure",
   },
   {
     icon: Activity,
+    titleKey: "standards.card4Title",
+    descKey: "standards.card4Desc",
+    metricKey: "standards.card4Metric",
     title: "Continuous Observability & SLOs",
     description: "Full instrumentation using Prometheus, Grafana, and OpenTelemetry. Tracking latency p95/p99, error rates, throughput, and automated alert routing via Alertmanager.",
     metric: "Sub-minute incident detection",
   },
   {
     icon: Lock,
+    titleKey: "standards.card5Title",
+    descKey: "standards.card5Desc",
+    metricKey: "standards.card5Metric",
     title: "Zero-Trust & Hardened Security",
     description: "Non-root scratch Docker containers, read-only root filesystems, automated secret rotation via HashiCorp Vault / Cloud KMS, and strict least-privilege IAM policies.",
     metric: "Minimal attack surface",
   },
   {
     icon: Gauge,
+    titleKey: "standards.card6Title",
+    descKey: "standards.card6Desc",
+    metricKey: "standards.card6Metric",
     title: "Zero-Downtime Releases",
     description: "Blue/Green and automated canary deployments using Istio and Flagger. Real-time metric evaluation with automatic rollbacks if error budgets are violated.",
     metric: "0s deployment disruption",
@@ -43,22 +61,19 @@ const principles = [
 
 <section id="standards" class="py-20 border-t border-slate-850 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Section Header -->
     <div class="flex flex-col items-center text-center mb-16">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-3">
         <Gauge class="w-3.5 h-3.5" />
-        <span>Operational Philosophy</span>
+        <span data-i18n="standards.badge">Operational Philosophy</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+      <h2 data-i18n="standards.title" class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
         Production Engineering Standards
       </h2>
-      <p class="mt-4 text-slate-400 max-w-2xl text-base leading-relaxed">
+      <p data-i18n="standards.subtitle" class="mt-4 text-slate-400 max-w-2xl text-base leading-relaxed">
         Writing code that runs locally is only 20% of the job. Here is the operational framework and reliability doctrine I apply to every production workload.
       </p>
     </div>
 
-    <!-- 6-Grid Principle Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {principles.map((item) => (
         <div class="rounded-2xl border border-slate-800 bg-[#0c121e]/70 backdrop-blur-md p-6 flex flex-col justify-between hover:border-slate-700 transition-colors">
@@ -67,27 +82,19 @@ const principles = [
               <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-cyan-400">
                 <item.icon class="w-5 h-5" />
               </div>
-              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-400">
+              <span data-i18n={item.metricKey} class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-emerald-400">
                 {item.metric}
               </span>
             </div>
-
-            <h3 class="text-lg font-bold text-white tracking-tight mb-2">
-              {item.title}
-            </h3>
-
-            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              {item.description}
-            </p>
+            <h3 data-i18n={item.titleKey} class="text-lg font-bold text-white tracking-tight mb-2">{item.title}</h3>
+            <p data-i18n={item.descKey} class="text-xs sm:text-sm text-slate-400 leading-relaxed">{item.description}</p>
           </div>
-
           <div class="mt-5 pt-4 border-t border-slate-850 flex items-center gap-2 text-[11px] font-mono text-slate-500">
             <CheckCircle2 class="w-3.5 h-3.5 text-emerald-400" />
-            <span>Enforced in CI/CD pipeline</span>
+            <span data-i18n="standards.enforced">Enforced in CI/CD pipeline</span>
           </div>
         </div>
       ))}
     </div>
-
   </div>
 </section>
