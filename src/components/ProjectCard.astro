@@ -1,0 +1,108 @@
+---
+import { Github, ExternalLink, Zap, Layers, Server, Code, ArrowUpRight } from 'lucide-astro';
+
+interface Props {
+  title: string;
+  role: "Full-Stack" | "DevOps/SRE" | "Hybrid";
+  description: string;
+  impact: string;
+  stack: string[];
+  github?: string;
+  demo?: string;
+  featured?: boolean;
+}
+
+const { title, role, description, impact, stack, github, demo, featured = false } = Astro.props;
+
+const roleConfig = {
+  "Full-Stack": {
+    badge: "border-cyan-500/30 bg-cyan-950/40 text-cyan-300",
+    dot: "bg-cyan-400",
+    glow: "group-hover:border-cyan-500/50",
+  },
+  "DevOps/SRE": {
+    badge: "border-violet-500/30 bg-violet-950/40 text-violet-300",
+    dot: "bg-violet-400",
+    glow: "group-hover:border-violet-500/50",
+  },
+  "Hybrid": {
+    badge: "border-amber-500/30 bg-amber-950/40 text-amber-300",
+    dot: "bg-amber-400",
+    glow: "group-hover:border-amber-500/50",
+  },
+};
+
+const currentRole = roleConfig[role] || roleConfig["Full-Stack"];
+---
+
+<div
+  class={`group relative rounded-2xl border border-slate-800 bg-[#0c121e]/80 backdrop-blur-md p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-950/30 ${currentRole.glow} ${featured ? 'lg:col-span-2' : ''}`}
+  data-role={role}
+>
+  <!-- Card Header: Role & Quick Actions -->
+  <div>
+    <div class="flex items-center justify-between gap-3 mb-4">
+      <!-- Role Badge -->
+      <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border font-medium ${currentRole.badge}`}>
+        <span class={`w-1.5 h-1.5 rounded-full ${currentRole.dot}`}></span>
+        <span>{role}</span>
+      </span>
+
+      <!-- Action Links -->
+      <div class="flex items-center gap-2">
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition-colors"
+            title="Inspect Source Repository"
+            aria-label={`${title} GitHub Repository`}
+          >
+            <Github class="w-4 h-4" />
+          </a>
+        )}
+        {demo && (
+          <a
+            href={demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:bg-slate-800 transition-colors"
+            title="Launch Live Production Target"
+            aria-label={`${title} Live Demo`}
+          >
+            <ArrowUpRight class="w-4 h-4" />
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+      {title}
+    </h3>
+
+    <!-- High-Impact Metric Badge -->
+    <div class="mt-3.5 inline-flex items-start sm:items-center gap-2 p-2.5 rounded-xl border border-emerald-500/20 bg-emerald-950/20 text-emerald-300 text-xs font-mono w-full">
+      <Zap class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
+      <div class="leading-snug">
+        <span class="text-slate-400 font-normal">Impact Metric: </span>
+        <strong class="font-semibold text-emerald-300">{impact}</strong>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="mt-4 text-sm text-slate-300 leading-relaxed font-normal">
+      {description}
+    </p>
+  </div>
+
+  <!-- Tech Stack Chips & Footer -->
+  <div class="mt-6 pt-5 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+    {stack.map((item) => (
+      <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-300 group-hover:border-slate-700 transition-colors">
+        {item}
+      </span>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,180 @@
+---
+import '../styles/global.css';
+import { Terminal, ShieldCheck, Github, Linkedin, FileText, Menu, Activity } from 'lucide-astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Alex Vance | Principal Full-Stack Engineer & DevOps / SRE Architect",
+  description = "Production-grade portfolio of a hybrid Software Engineer & Site Reliability Architect specializing in cloud-native platforms, high-throughput distributed systems, and automated GitOps CI/CD pipelines.",
+  image = "/og-image.png",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr.pages.dev');
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080c14" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO & Metadata -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Fonts: Inter & JetBrains Mono with display=swap for Core Web Vitals -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data for Search Engines (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Alex Vance",
+      "jobTitle": "Full-Stack Engineer & DevOps/SRE Architect",
+      "url": canonicalURL,
+      "knowsAbout": [
+        "Distributed Systems",
+        "Site Reliability Engineering",
+        "Kubernetes & Docker",
+        "Continuous Integration & Continuous Delivery",
+        "Astro & React",
+        "Cloud Architecture"
+      ]
+    })} />
+  </head>
+  <body class="bg-[#080c14] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950 font-sans relative overflow-x-hidden">
+    <!-- Subtle Background Ambient Grid & Glows -->
+    <div class="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none z-0" style="background-size: 32px 32px;"></div>
+    <div class="fixed top-[-10rem] left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-500/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
+    <div class="fixed top-[40rem] -right-32 w-[500px] h-[400px] bg-violet-600/10 blur-[140px] rounded-full pointer-events-none z-0"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-[#080c14]/85 border-b border-slate-800/80 transition-all">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <!-- Logo / Brand Identity -->
+        <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-md p-1">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 transition-colors shadow-sm">
+            <Terminal class="w-5 h-5 text-cyan-400 group-hover:scale-105 transition-transform" />
+          </div>
+          <div class="flex flex-col">
+            <span class="font-mono font-bold text-sm text-slate-100 tracking-tight flex items-center gap-1.5">
+              alex.dev
+              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="System Operational"></span>
+            </span>
+            <span class="text-[10px] text-slate-400 font-mono tracking-widest uppercase">FullStack &bull; DevOps/SRE</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300">
+          <a href="#projects" class="px-3.5 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 transition-all">Projects</a>
+          <a href="#skills" class="px-3.5 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 transition-all">Skills Matrix</a>
+          <a href="#standards" class="px-3.5 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 transition-all">Production Standards</a>
+          <a href="#contact" class="px-3.5 py-1.5 rounded-md hover:text-white hover:bg-slate-800/60 transition-all">Contact</a>
+        </nav>
+
+        <!-- Direct Social & Resume Action Buttons -->
+        <div class="flex items-center gap-2.5">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-100 hover:border-slate-700 hover:bg-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            aria-label="GitHub Profile"
+          >
+            <Github class="w-4 h-4" />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-100 hover:border-slate-700 hover:bg-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            aria-label="LinkedIn Profile"
+          >
+            <Linkedin class="w-4 h-4" />
+          </a>
+          <a
+            href="#contact"
+            class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-medium px-3.5 py-2 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-400 transition-all shadow-sm"
+          >
+            <span>Hire Me</span>
+            <span class="text-cyan-400">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow z-10 relative">
+      <slot />
+    </main>
+
+    <!-- Production-Grade Engineering Footer -->
+    <footer class="border-t border-slate-850 bg-[#060910] z-10 relative mt-24 py-12 text-slate-400 text-xs font-mono">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800/60">
+          <div class="flex flex-col items-center md:items-start gap-1">
+            <div class="flex items-center gap-2 text-slate-200 font-semibold text-sm">
+              <ShieldCheck class="w-4 h-4 text-emerald-400" />
+              <span>Engineered with Astro SSG & Tailwind CSS</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">
+              Zero runtime JavaScript dependencies &bull; 100/100 Lighthouse SLA target &bull; Hosted on Edge CDN
+            </p>
+          </div>
+
+          <!-- Production Health Pill -->
+          <div class="flex items-center gap-3 bg-slate-900/80 border border-slate-800 px-3.5 py-1.5 rounded-full shadow-inner">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-slate-300 text-xs">All Systems Operational</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-emerald-400 font-semibold text-xs">99.995% Uptime</span>
+          </div>
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+          <p>&copy; {new Date().getFullYear()} Alex Vance. Released under MIT License.</p>
+          <div class="flex items-center gap-4">
+            <a href="#projects" class="hover:text-slate-300 transition-colors">Projects</a>
+            <a href="#skills" class="hover:text-slate-300 transition-colors">Skills</a>
+            <a href="#standards" class="hover:text-slate-300 transition-colors">Architecture</a>
+            <a href="#contact" class="hover:text-slate-300 transition-colors">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

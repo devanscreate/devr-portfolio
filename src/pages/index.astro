@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SkillsMatrix from '../components/SkillsMatrix.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProductionStandards from '../components/ProductionStandards.astro';
+import Contact from '../components/Contact.astro';
+import { getCollection } from 'astro:content';
+import { Layers, FolderGit2, Sparkles, Filter } from 'lucide-astro';
+
+// Fetch projects from Astro Content Collections and sort by defined order
+const rawProjects = await getCollection('projects');
+const projects = rawProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const filterRoles = ["All", "Full-Stack", "DevOps/SRE", "Hybrid"];
+---
+
+<Layout
+  title="Alex Vance | Principal Full-Stack Engineer & DevOps / SRE Architect"
+  description="Production-grade portfolio of a hybrid Software Engineer & Site Reliability Architect specializing in cloud-native platforms, high-throughput distributed systems, and automated GitOps CI/CD pipelines."
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Featured Projects Bento Grid Section -->
+  <section id="projects" class="py-20 border-t border-slate-850 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header with Role Filters -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3">
+            <FolderGit2 class="w-3.5 h-3.5" />
+            <span>Production Deployments & Architecture</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Featured Bento Case Studies
+          </h2>
+          <p class="mt-2 text-slate-400 max-w-xl text-sm leading-relaxed">
+            Battle-tested systems engineered for high traffic, resilient failovers, and low p99 latency. Filter by discipline below.
+          </p>
+        </div>
+
+        <!-- Role Filter Buttons (Micro Zero-Overhead Vanilla JS Filter) -->
+        <div class="flex flex-wrap items-center gap-2 bg-[#0c121e]/80 border border-slate-800 p-1.5 rounded-xl backdrop-blur-md" id="role-filters">
+          {filterRoles.map((role, idx) => (
+            <button
+              type="button"
+              data-filter={role}
+              class={`filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer ${
+                idx === 0
+                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+              }`}
+            >
+              {role}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Bento Grid of Projects -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            role={project.data.role}
+            description={project.data.description}
+            impact={project.data.impact}
+            stack={project.data.stack}
+            github={project.data.github}
+            demo={project.data.demo}
+            featured={project.data.featured}
+          />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Technical Skills Matrix -->
+  <SkillsMatrix />
+
+  <!-- Production Engineering Standards & Architecture Philosophy -->
+  <ProductionStandards />
+
+  <!-- Contact Section (Web3Forms static POST) -->
+  <Contact />
+
+  <!-- Micro Inline Client Filter Logic (Zero Framework / Zero Bundle Overhead: ~25 lines) -->
+  <script is:inline>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('#projects-grid > div');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update active button state
+        filterButtons.forEach((b) => {
+          b.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-800/60';
+        });
+        btn.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm';
+
+        // Filter cards smoothly
+        projectCards.forEach((card) => {
+          const cardRole = card.getAttribute('data-role');
+          if (filter === 'All' || cardRole === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</Layout>
