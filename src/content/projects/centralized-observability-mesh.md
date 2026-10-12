@@ -6,7 +6,8 @@ impact: "Reduced Mean Time to Detect (MTTD) from 25m to < 45s with automated web
 stack: ["Prometheus", "Grafana", "Linux Systemd", "Docker", "Nginx", "GitHub Actions", "Bash"]
 github: "https://github.com/devanscreate/centralized-observability-mesh"
 demo: "https://devr-portfolio.31januaridd.workers.dev/#projects"
-featured: false
+featured: true
+span: full
 order: 5
 ---
 

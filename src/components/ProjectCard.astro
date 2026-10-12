@@ -1,5 +1,5 @@
 ---
-import { Github, Zap, ArrowUpRight, FileText, CheckCircle2, X } from 'lucide-astro';
+import { Github, Zap, ArrowUpRight, FileText, CheckCircle2, X, Activity, ShieldCheck } from 'lucide-astro';
 
 interface Props {
   id?: string;
@@ -11,9 +11,11 @@ interface Props {
   github?: string;
   demo?: string;
   featured?: boolean;
+  span?: 'normal' | 'wide' | 'full';
 }
 
-const { id, title, role, description, impact, stack, github, demo, featured = false } = Astro.props;
+const { id, title, role, description, impact, stack, github, demo, featured = false, span } = Astro.props;
+const effectiveSpan = span || (featured ? 'wide' : 'normal');
 
 const roleConfig = {
   "Full-Stack": {
@@ -33,117 +35,335 @@ const roleConfig = {
   },
 };
 
+const spanClass = {
+  normal: 'col-span-1',
+  wide: 'col-span-1 lg:col-span-2',
+  full: 'col-span-1 md:col-span-2 lg:col-span-3',
+}[effectiveSpan];
+
 const currentRole = roleConfig[role] || roleConfig["Full-Stack"];
 const modalId = `modal-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <div
-  class={`group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/80 backdrop-blur-md p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-xl ${currentRole.glow} ${featured ? 'lg:col-span-2' : ''}`}
+  class={`group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/80 backdrop-blur-md p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-xl ${currentRole.glow} ${spanClass}`}
   data-role={role}
+  data-span={effectiveSpan}
 >
-  <div>
-    <!-- Card Header -->
-    <div class="flex items-center justify-between gap-3 mb-4">
-      <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border font-medium ${currentRole.badge}`}>
-        <span class={`w-1.5 h-1.5 rounded-full ${currentRole.dot}`}></span>
-        <span>{role}</span>
-      </span>
+  {effectiveSpan === 'full' ? (
+    <!-- Responsive Full-Width Showcase Bento Card Layout -->
+    <div class="flex flex-col md:grid md:grid-cols-12 md:gap-6 lg:gap-8 items-stretch w-full">
+      <!-- Left Column: Primary Case Study Details -->
+      <div class="md:col-span-7 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
+        <div>
+          <!-- Card Header -->
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border font-medium ${currentRole.badge}`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${currentRole.dot}`}></span>
+                <span>{role}</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 font-medium">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>Telemetry & Recovery Mesh</span>
+              </span>
+            </div>
 
-      <!-- Action Links -->
-      <div class="flex items-center gap-2">
-        {github && (
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-sm"
-            title="Inspect GitHub Repository"
-            aria-label={`${title} GitHub Repository`}
-          >
-            <Github class="w-4 h-4" />
-          </a>
-        )}
-        {demo && (
-          <a
-            href={demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 transition-colors shadow-sm"
-            title="Launch Live Production Target"
-            aria-label={`${title} Live Demo`}
-          >
-            <ArrowUpRight class="w-4 h-4" />
-          </a>
-        )}
+            <!-- Action Links -->
+            <div class="flex items-center gap-2">
+              {github && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-sm"
+                  title="Inspect GitHub Repository"
+                  aria-label={`${title} GitHub Repository`}
+                >
+                  <Github class="w-4 h-4" />
+                </a>
+              )}
+              {demo && (
+                <a
+                  href={demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 transition-colors shadow-sm"
+                  title="Launch Live Production Target"
+                  aria-label={`${title} Live Demo`}
+                >
+                  <ArrowUpRight class="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
+            {title}
+          </h3>
+
+          <!-- Impact Metric Badge -->
+          <div class="mt-3.5 inline-flex items-start sm:items-center gap-2 p-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-xs font-mono w-full">
+            <Zap class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
+            <div class="leading-snug">
+              <span data-i18n="projects.impactLabel" class="text-slate-600 dark:text-slate-400 font-normal">Engineering Impact: </span>
+              <strong class="font-semibold text-emerald-800 dark:text-emerald-300">{impact}</strong>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+            {description}
+          </p>
+        </div>
+
+        <!-- Tech Stack Chips & Action Bar -->
+        <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            {stack.map((item) => (
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 group-hover:border-slate-300 dark:group-hover:border-slate-700 transition-colors">
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-2.5 pt-1">
+            <button
+              type="button"
+              onclick={`document.getElementById('${modalId}').showModal()`}
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-medium hover:bg-cyan-500/20 transition-colors cursor-pointer shadow-sm"
+            >
+              <FileText class="w-3.5 h-3.5" />
+              <span data-i18n="projects.btnWriteup">Architecture Writeup</span>
+            </button>
+
+            {github && (
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-mono transition-colors"
+              >
+                <Github class="w-3.5 h-3.5" />
+                <span data-i18n="projects.btnRepo">GitHub Repo</span>
+              </a>
+            )}
+
+            {demo && (
+              <a
+                href={demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300 text-xs font-mono transition-colors"
+              >
+                <ArrowUpRight class="w-3.5 h-3.5" />
+                <span data-i18n="projects.btnDemo">Live Target</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: SRE Telemetry & Live Incident Recovery Status HUD -->
+      <div class="md:col-span-5 lg:col-span-5 xl:col-span-4 flex flex-col justify-between mt-6 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800/80 md:pl-6 lg:pl-8">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-800/90 bg-slate-50/70 dark:bg-slate-900/60 p-4 sm:p-5 flex flex-col justify-between space-y-4">
+          <!-- HUD Header -->
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <Activity class="w-4 h-4 text-emerald-500 animate-pulse" />
+              <span class="text-xs font-mono font-semibold text-slate-800 dark:text-slate-200">
+                SRE Telemetry Node
+              </span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-medium">
+              HEALTHY (AUTO-HEALING)
+            </span>
+          </div>
+
+          <!-- 4 Golden Signals 2x2 Grid -->
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                <span>Latency (p99)</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Normal</span>
+              </div>
+              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
+                18.4ms
+              </div>
+              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
+                SLA target &lt; 45ms
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                <span>Traffic Rate</span>
+                <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Steady</span>
+              </div>
+              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
+                14.2k <span class="text-[10px] font-normal text-slate-500">req/s</span>
+              </div>
+              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
+                Prometheus 15s scrape
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                <span>Error Ratio</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Nominal</span>
+              </div>
+              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
+                0.001%
+              </div>
+              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
+                SLO 99.99% target
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                <span>Saturation</span>
+                <span class="text-violet-600 dark:text-violet-400 font-semibold">Optimal</span>
+              </div>
+              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
+                38% <span class="text-[10px] font-normal text-slate-500">CPU</span>
+              </div>
+              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
+                52% RAM footprint
+              </div>
+            </div>
+          </div>
+
+          <!-- Incident Recovery Status Badge -->
+          <div class="p-2.5 rounded-lg border border-cyan-500/20 bg-cyan-500/5 dark:bg-cyan-950/20 text-xs font-mono space-y-1">
+            <div class="flex items-center justify-between text-[11px] text-cyan-800 dark:text-cyan-300 font-semibold">
+              <span class="flex items-center gap-1.5">
+                <ShieldCheck class="w-3.5 h-3.5 text-emerald-500" />
+                Auto-Recovery Mesh:
+              </span>
+              <span class="text-emerald-600 dark:text-emerald-400">Standby (0 Faults)</span>
+            </div>
+            <p class="text-[10px] text-slate-600 dark:text-slate-400 leading-tight">
+              Systemd Watchdog heartbeat active • MTTD &lt; 45s webhook escalation configured.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
+  ) : (
+    <!-- Standard Bento Card Layout (Wide / Normal) -->
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <!-- Card Header -->
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border font-medium ${currentRole.badge}`}>
+            <span class={`w-1.5 h-1.5 rounded-full ${currentRole.dot}`}></span>
+            <span>{role}</span>
+          </span>
 
-    <!-- Title -->
-    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
-      {title}
-    </h3>
+          <!-- Action Links -->
+          <div class="flex items-center gap-2">
+            {github && (
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-sm"
+                title="Inspect GitHub Repository"
+                aria-label={`${title} GitHub Repository`}
+              >
+                <Github class="w-4 h-4" />
+              </a>
+            )}
+            {demo && (
+              <a
+                href={demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 transition-colors shadow-sm"
+                title="Launch Live Production Target"
+                aria-label={`${title} Live Demo`}
+              >
+                <ArrowUpRight class="w-4 h-4" />
+              </a>
+            )}
+          </div>
+        </div>
 
-    <!-- Impact Metric Badge -->
-    <div class="mt-3.5 inline-flex items-start sm:items-center gap-2 p-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-xs font-mono w-full">
-      <Zap class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
-      <div class="leading-snug">
-        <span data-i18n="projects.impactLabel" class="text-slate-600 dark:text-slate-400 font-normal">Engineering Impact: </span>
-        <strong class="font-semibold text-emerald-800 dark:text-emerald-300">{impact}</strong>
+        <!-- Title -->
+        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
+          {title}
+        </h3>
+
+        <!-- Impact Metric Badge -->
+        <div class="mt-3.5 inline-flex items-start sm:items-center gap-2 p-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-xs font-mono w-full">
+          <Zap class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
+          <div class="leading-snug">
+            <span data-i18n="projects.impactLabel" class="text-slate-600 dark:text-slate-400 font-normal">Engineering Impact: </span>
+            <strong class="font-semibold text-emerald-800 dark:text-emerald-300">{impact}</strong>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+          {description}
+        </p>
+      </div>
+
+      <!-- Tech Stack Chips & Action Bar -->
+      <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80 space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          {stack.map((item) => (
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 group-hover:border-slate-300 dark:group-hover:border-slate-700 transition-colors">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center gap-2.5 pt-1">
+          <button
+            type="button"
+            onclick={`document.getElementById('${modalId}').showModal()`}
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-medium hover:bg-cyan-500/20 transition-colors cursor-pointer shadow-sm"
+          >
+            <FileText class="w-3.5 h-3.5" />
+            <span data-i18n="projects.btnWriteup">Architecture Writeup</span>
+          </button>
+
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-mono transition-colors"
+            >
+              <Github class="w-3.5 h-3.5" />
+              <span data-i18n="projects.btnRepo">GitHub Repo</span>
+            </a>
+          )}
+
+          {demo && (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300 text-xs font-mono transition-colors"
+            >
+              <ArrowUpRight class="w-3.5 h-3.5" />
+              <span data-i18n="projects.btnDemo">Live Target</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
-
-    <!-- Description -->
-    <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-      {description}
-    </p>
-  </div>
-
-  <!-- Tech Stack Chips & Action Bar -->
-  <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80 space-y-4">
-    <div class="flex flex-wrap items-center gap-2">
-      {stack.map((item) => (
-        <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 group-hover:border-slate-300 dark:group-hover:border-slate-700 transition-colors">
-          {item}
-        </span>
-      ))}
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="flex flex-wrap items-center gap-2.5 pt-1">
-      <button
-        type="button"
-        onclick={`document.getElementById('${modalId}').showModal()`}
-        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-medium hover:bg-cyan-500/20 transition-colors cursor-pointer shadow-sm"
-      >
-        <FileText class="w-3.5 h-3.5" />
-        <span data-i18n="projects.btnWriteup">Architecture Writeup</span>
-      </button>
-
-      {github && (
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-mono transition-colors"
-        >
-          <Github class="w-3.5 h-3.5" />
-          <span data-i18n="projects.btnRepo">GitHub Repo</span>
-        </a>
-      )}
-
-      {demo && (
-        <a
-          href={demo}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300 text-xs font-mono transition-colors"
-        >
-          <ArrowUpRight class="w-3.5 h-3.5" />
-          <span data-i18n="projects.btnDemo">Live Target</span>
-        </a>
-      )}
-    </div>
-  </div>
+  )}
 
   <!-- Sleek Architecture Writeup Modal Dialog -->
   <dialog

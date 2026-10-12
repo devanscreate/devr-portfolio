@@ -6,7 +6,8 @@ impact: "Decoupled compute-heavy workloads, eliminating 100% of synchronous HTTP
 stack: ["Python", "Laravel", "Vue.js", "TCP Socket", "Linux", "Nginx", "MySQL"]
 github: "https://github.com/devanscreate/enterprise-socket-bridge"
 demo: "https://devr-portfolio.31januaridd.workers.dev/#projects"
-featured: true
+featured: false
+span: normal
 order: 2
 ---
 

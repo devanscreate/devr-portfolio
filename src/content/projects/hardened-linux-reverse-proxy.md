@@ -6,7 +6,8 @@ impact: "Achieved A+ SSL Labs rating, automated certificate rotation, and zero-d
 stack: ["Nginx", "Linux Internals", "Systemd", "SSH Tunnels", "Docker", "UFW Firewall"]
 github: "https://github.com/devanscreate/hardened-linux-proxy"
 demo: "https://devr-portfolio.31januaridd.workers.dev/#projects"
-featured: true
+featured: false
+span: normal
 order: 3
 ---
 

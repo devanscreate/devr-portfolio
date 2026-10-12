@@ -7,6 +7,7 @@ stack: ["Laravel", "Python", "Vue.js", "Docker", "PostgreSQL", "Redis", "Nginx"]
 github: "https://github.com/devanscreate/ekyc-verification-pipeline"
 demo: "https://devr-portfolio.31januaridd.workers.dev/#projects"
 featured: true
+span: wide
 order: 4
 ---
 

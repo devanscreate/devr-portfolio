@@ -7,6 +7,7 @@ stack: ["FastAPI", "Python", "WebSockets", "HTML5 Canvas", "Docker", "Redis"]
 github: "https://github.com/devanscreate/realtime-orderbook-feed"
 demo: "https://devr-portfolio.31januaridd.workers.dev/#projects"
 featured: true
+span: wide
 order: 1
 ---
 

@@ -12,6 +12,7 @@ const projects = defineCollection({
     github: z.string().url().optional(),
     demo: z.string().url().optional(),
     featured: z.boolean().default(false),
+    span: z.enum(['normal', 'wide', 'full']).default('normal'),
     order: z.number().default(99),
   }),
 });

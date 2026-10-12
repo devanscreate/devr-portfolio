@@ -71,6 +71,7 @@ const filterRoles = [
             github={project.data.github}
             demo={project.data.demo}
             featured={project.data.featured}
+            span={project.data.span}
           />
         ))}
       </div>
@@ -98,9 +99,9 @@ const filterRoles = [
         projectCards.forEach((card) => {
           const cardRole = card.getAttribute('data-role');
           if (filter === 'All' || cardRole === filter) {
-            card.style.display = 'flex';
+            card.classList.remove('hidden');
           } else {
-            card.style.display = 'none';
+            card.classList.add('hidden');
           }
         });
       });
