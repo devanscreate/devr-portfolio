@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "Devan Regiana | DevOps Engineer & Full-Stack Developer",
-  description = "Production portfolio of Devan Regiana - DevOps Engineer & Full-Stack Developer specializing in high-reliability infrastructure, decoupled socket bridges, Linux server hardening, and zero-downtime CI/CD automation.",
+  title = "Devan Regiana | Full-Stack Software Engineer & DevOps / SRE Architect",
+  description = "Production portfolio of Devan Regiana - Full-Stack Software Engineer & DevOps / SRE Architect based in Indonesia. Specializing in Laravel, Vue.js, Python, Docker, Linux server hardening, and high-concurrency microservices.",
   image = "/og-image.png",
 } = Astro.props;
 
@@ -45,6 +45,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://devr-por
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content="Devan Regiana, Software Engineer Indonesia, Full-Stack Developer Indonesia, Backend Developer, DevOps Engineer, Site Reliability Engineer, SRE Indonesia, Laravel, Vue.js, Python FastAPI, Docker, Nginx, Linux Administrator, Jakarta, Bandung, Remote Software Engineer" />
+    <meta name="author" content="Devan Regiana" />
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph -->
