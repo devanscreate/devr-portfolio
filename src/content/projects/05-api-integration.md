@@ -11,6 +11,16 @@ demo: "https://devr-portfolio.pages.dev/#projects"
 featured: false
 span: normal
 order: 5
+images:
+  - url: "/images/projects/project-5-1.jpg"
+    title: "1. Throughput API & Status Endpoint Aktif"
+    caption: "Grafik lalu lintas panggilan data real-time dengan indikator titik koneksi kasir dan toko online."
+  - url: "/images/projects/project-5-2.jpg"
+    title: "2. Log Sinkronisasi Data & Payload Inspector"
+    caption: "Pemeriksaan struktur data JSON transaksi otomatis untuk memastikan tidak ada barang yang selisih."
+  - url: "/images/projects/project-5-3.jpg"
+    title: "3. Matriks Latensi Respon & Kecepatan Cabang"
+    caption: "Tabel responsivitas server dengan kecepatan respon rata-rata di bawah 10 milidetik."
 ---
 
 ### Ringkasan Untuk Klien & Bisnis

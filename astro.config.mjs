@@ -5,6 +5,10 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://devops-fullstack-portfolio.pages.dev',
   compressHTML: true,
+  server: {
+    host: true, // Listen on all network interfaces (IPv4 0.0.0.0 + IPv6) to eliminate Windows IPv4 timeout latency
+    port: 4321,
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
@@ -18,18 +22,8 @@ export default defineConfig({
     optimizeDeps: {
       include: ['lucide-astro'],
     },
-    server: {
-      warmup: {
-        clientFiles: [
-          './src/pages/index.astro',
-          './src/layouts/Layout.astro',
-          './src/components/Hero.astro',
-          './src/components/ProjectCard.astro',
-          './src/components/SkillsMatrix.astro',
-          './src/components/ProductionStandards.astro',
-          './src/components/Contact.astro',
-        ],
-      },
+    ssr: {
+      noExternal: ['lucide-astro'],
     },
     build: {
       cssCodeSplit: false,

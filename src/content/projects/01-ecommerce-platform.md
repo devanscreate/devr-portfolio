@@ -11,6 +11,16 @@ demo: "https://devr-portfolio.pages.dev/#projects"
 featured: true
 span: normal
 order: 1
+images:
+  - url: "/images/projects/project-1-1.jpg"
+    title: "1. Tampilan Beranda & Katalog Produk"
+    caption: "Antarmuka toko online responsif dengan kartu produk elegan, rating, dan filter kategori instan."
+  - url: "/images/projects/project-1-2.jpg"
+    title: "2. Keranjang Belanja & Checkout Pembayaran"
+    caption: "Alur pembelian kilat dengan opsi pembayaran QRIS dan verifikasi otomatis tanpa bukti transfer manual."
+  - url: "/images/projects/project-1-3.jpg"
+    title: "3. Panel Manajemen Admin & Stok"
+    caption: "Dashboard pengelola untuk memantau pesanan masuk, mencetak resi, dan mengatur diskon promo."
 ---
 
 ### Ringkasan Untuk Klien & Bisnis

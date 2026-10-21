@@ -11,6 +11,16 @@ demo: "https://devr-portfolio.pages.dev/#projects"
 featured: true
 span: normal
 order: 2
+images:
+  - url: "/images/projects/project-2-1.jpg"
+    title: "1. Ringkasan Eksekutif & Grafik Penjualan"
+    caption: "Dashboard analitik modern dengan visualisasi tren pendapatan, target penjualan, dan metrik retensi."
+  - url: "/images/projects/project-2-2.jpg"
+    title: "2. Manajemen Inventaris & Logistik Gudang"
+    caption: "Tabel stok real-time dengan status indikator ketersediaan barang dan peringatan stok menipis."
+  - url: "/images/projects/project-2-3.jpg"
+    title: "3. Laporan Laba Rugi & Rekap Finansial"
+    caption: "Laporan keuangan komprehensif yang dapat diekspor ke PDF dan Excel hanya dalam satu klik."
 ---
 
 ### Ringkasan Untuk Klien & Bisnis

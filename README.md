@@ -78,23 +78,34 @@ devr-portfolio/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml            # Konfigurasi otomatisasi CI/CD ke Cloudflare Pages
-├── public/                       # Berkas publik statis (favicon, resume.pdf, robots.txt)
+├── public/                       # Berkas publik statis
+│   ├── images/
+│   │   ├── dev_portrait.jpg      # Foto portrait hero
+│   │   └── projects/             # Screenshot UI 6 Proyek (3 gambar per proyek)
+│   │       ├── project-1-1.jpg s/d project-1-3.jpg (E-Commerce)
+│   │       ├── project-2-1.jpg s/d project-2-3.jpg (Dashboard)
+│   │       ├── project-3-1.jpg s/d project-3-3.jpg (Booking)
+│   │       ├── project-4-1.jpg s/d project-4-3.jpg (Fintech)
+│   │       ├── project-5-1.jpg s/d project-5-3.jpg (API Gateway)
+│   │       └── project-6-1.jpg s/d project-6-3.jpg (Cloud Server)
 │   ├── favicon.svg
 │   └── robots.txt
 ├── src/
+│   ├── assets/                   # Aset gambar yang dioptimasi otomatis oleh Astro
 │   ├── components/               # Komponen-komponen antarmuka (UI)
 │   │   ├── Contact.astro         # Bagian kontak & formulir kirim pesan
-│   │   ├── Hero.astro            # Bagian utama atas (headline, CTA, simulasi terminal)
-│   │   ├── ProductionStandards.astro # Bagian standar prinsip engineering
-│   │   ├── ProjectCard.astro     # Kartu Bento dan modal detail proyek
-│   │   └── SkillsMatrix.astro    # Tabel matriks keahlian teknis
+│   │   ├── Hero.astro            # Bagian editorial hero, arch grid, & stiker warna-warni
+│   │   ├── ProductionStandards.astro # Bagian jaminan kualitas ("Mengapa Memilih Saya")
+│   │   ├── ProjectCard.astro     # Kartu 6 space proyek + galeri 3 screenshot interaktif
+│   │   └── SkillsMatrix.astro    # 4 kartu solusi bisnis (Frontend, Backend, Cloud, Data)
 │   ├── content/
-│   │   └── projects/             # Berkas Markdown (.md) untuk setiap studi kasus proyek
-│   │       ├── realtime-orderbook-platform.md
-│   │       ├── enterprise-socket-bridge.md
-│   │       ├── fintech-ekyc-verification-pipeline.md
-│   │       ├── hardened-linux-reverse-proxy.md
-│   │       └── centralized-observability-mesh.md
+│   │   └── projects/             # 6 File Markdown (.md) untuk masing-masing proyek
+│   │       ├── 01-ecommerce-platform.md
+│   │       ├── 02-company-dashboard.md
+│   │       ├── 03-realtime-booking.md
+│   │       ├── 04-fintech-verification.md
+│   │       ├── 05-api-integration.md
+│   │       └── 06-cloud-infrastructure.md
 │   ├── content.config.ts         # Definisi skema data (Zod) untuk koleksi proyek
 │   ├── i18n/
 │   │   └── translations.ts       # Kamus terjemahan bilingual (Indonesia & Inggris)

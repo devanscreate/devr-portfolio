@@ -11,6 +11,16 @@ demo: "https://devr-portfolio.pages.dev/#projects"
 featured: false
 span: normal
 order: 4
+images:
+  - url: "/images/projects/project-4-1.jpg"
+    title: "1. Unggah KTP & Verifikasi Biometrik Wajah"
+    caption: "Alur verifikasi identitas modern dengan indikator pencocokan biometrik dan centang hijau sukses."
+  - url: "/images/projects/project-4-2.jpg"
+    title: "2. Ekstraksi Otomatis OCR & Pemeriksaan Data"
+    caption: "Sistem membaca teks KTP otomatis untuk menghemat waktu pengetikan nama dan nomor identitas."
+  - url: "/images/projects/project-4-3.jpg"
+    title: "3. Status Enkripsi & Keamanan Data Nasabah"
+    caption: "Panel proteksi data dengan sertifikasi enkripsi AES-256 dan kepatuhan privasi pengguna."
 ---
 
 ### Ringkasan Untuk Klien & Bisnis

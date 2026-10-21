@@ -11,6 +11,16 @@ demo: "https://devr-portfolio.pages.dev/#projects"
 featured: true
 span: normal
 order: 6
+images:
+  - url: "/images/projects/project-6-1.jpg"
+    title: "1. Status Kesehatan Node & Uptime 99.99%"
+    caption: "Panel monitoring kesehatan cluster server dengan indikator perisai hijau optimal tanpa gangguan."
+  - url: "/images/projects/project-6-2.jpg"
+    title: "2. Metrik Kontainer Docker & Keamanan Nginx"
+    caption: "Pemantauan beban CPU, memori, dan sertifikat enkripsi SSL TLS 1.3 yang aktif."
+  - url: "/images/projects/project-6-3.jpg"
+    title: "3. Peta Distribusi Trafik Cloudflare Edge CDN"
+    caption: "Peta jaringan global yang menyalurkan akses pengunjung secara kilat di seluruh wilayah Indonesia."
 ---
 
 ### Ringkasan Untuk Klien & Bisnis

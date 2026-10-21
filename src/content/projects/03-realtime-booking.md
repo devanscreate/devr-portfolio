@@ -11,6 +11,16 @@ demo: "https://devr-portfolio.pages.dev/#projects"
 featured: false
 span: normal
 order: 3
+images:
+  - url: "/images/projects/project-3-1.jpg"
+    title: "1. Kalender Interaktif & Pilihan Jam Layanan"
+    caption: "Tampilan kalender pemesanan dengan penanda slot jam kosong berwarna toska yang interaktif."
+  - url: "/images/projects/project-3-2.jpg"
+    title: "2. Modal Konfirmasi & Notifikasi WhatsApp"
+    caption: "Pop-up konfirmasi instan dengan tombol aktivasi pengingat otomatis ke nomor WhatsApp pelanggan."
+  - url: "/images/projects/project-3-3.jpg"
+    title: "3. Panel Manajemen Reservasi Admin"
+    caption: "Tampilan daftar janji temu staf, filter tanggal, dan status kehadiran pelanggan secara langsung."
 ---
 
 ### Ringkasan Untuk Klien & Bisnis
