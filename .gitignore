@@ -5,6 +5,7 @@ dist/
 
 # Environment and secrets
 .env*
+!.env.example
 
 # Logs and OS
 npm-debug.log*
