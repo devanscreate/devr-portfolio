@@ -9,14 +9,14 @@
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #080c14;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #0b0c10;
     color: #e2e8f0;
   }
 
   ::selection {
-    background-color: #06b6d4;
-    color: #080c14;
+    background-color: #4ddcd0;
+    color: #0a0a0c;
   }
 
   /* Custom Sleek Scrollbar */
@@ -24,25 +24,39 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #080c14;
+    background: #0b0c10;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #272730;
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #3f3f4e;
   }
 }
 
 @layer utilities {
-  .text-glow-cyan {
-    text-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
+  .arch-grid-light {
+    background-color: #f5f2eb;
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
   }
-  .text-glow-emerald {
-    text-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+
+  .arch-grid-dark {
+    background-color: #17181f;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 36px 36px;
   }
-  .box-glow {
-    box-shadow: 0 0 35px -10px rgba(6, 182, 212, 0.15);
+
+  .sticker-shadow {
+    box-shadow: 4px 6px 0px rgba(0, 0, 0, 0.25), 0 12px 24px -6px rgba(0, 0, 0, 0.2);
+  }
+
+  .sticker-shadow-hover:hover {
+    box-shadow: 6px 10px 0px rgba(0, 0, 0, 0.3), 0 20px 30px -10px rgba(0, 0, 0, 0.25);
   }
 }

@@ -1,9 +1,11 @@
 ---
-import { Github, Zap, ArrowUpRight, FileText, CheckCircle2, X, Activity, ShieldCheck } from 'lucide-astro';
+import { Github, Zap, ArrowUpRight, FileText, X, CheckCircle2, ShoppingBag, BarChart3, CalendarCheck, ShieldCheck, Network, Cloud } from 'lucide-astro';
 
 interface Props {
   id?: string;
   title: string;
+  subtitle?: string;
+  category?: string;
   role: "Full-Stack" | "DevOps/SRE" | "Hybrid";
   description: string;
   impact: string;
@@ -11,399 +13,216 @@ interface Props {
   github?: string;
   demo?: string;
   featured?: boolean;
-  span?: 'normal' | 'wide' | 'full';
+  order?: number;
 }
 
-const { id, title, role, description, impact, stack, github, demo, featured = false, span } = Astro.props;
-const effectiveSpan = span || (featured ? 'wide' : 'normal');
+const { id, title, subtitle, category, role, description, impact, stack, github, demo, featured = false, order = 1 } = Astro.props;
 
-const roleConfig = {
-  "Full-Stack": {
-    badge: "border-cyan-500/30 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-700 dark:text-cyan-300",
-    dot: "bg-cyan-500 dark:bg-cyan-400",
-    glow: "group-hover:border-cyan-500/50",
-  },
-  "DevOps/SRE": {
-    badge: "border-violet-500/30 bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300",
-    dot: "bg-violet-500 dark:bg-violet-400",
-    glow: "group-hover:border-violet-500/50",
-  },
-  "Hybrid": {
-    badge: "border-amber-500/30 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300",
-    dot: "bg-amber-500 dark:bg-amber-400",
-    glow: "group-hover:border-amber-500/50",
-  },
-};
+// Category icon & visual gradient presets
+const categoryIcons = [
+  ShoppingBag,
+  BarChart3,
+  CalendarCheck,
+  ShieldCheck,
+  Network,
+  Cloud,
+];
 
-const spanClass = {
-  normal: 'col-span-1',
-  wide: 'col-span-1 lg:col-span-2',
-  full: 'col-span-1 md:col-span-2 lg:col-span-3',
-}[effectiveSpan];
+const CategoryIcon = categoryIcons[(order - 1) % categoryIcons.length] || ShoppingBag;
 
-const currentRole = roleConfig[role] || roleConfig["Full-Stack"];
-const modalId = `modal-${Math.random().toString(36).substring(2, 9)}`;
+const gradientThemes = [
+  "from-amber-500/15 via-orange-500/10 to-yellow-500/5 border-amber-500/20 text-amber-500",
+  "from-blue-500/15 via-indigo-500/10 to-violet-500/5 border-blue-500/20 text-blue-500",
+  "from-cyan-500/15 via-teal-500/10 to-emerald-500/5 border-cyan-500/20 text-cyan-500",
+  "from-rose-500/15 via-pink-500/10 to-purple-500/5 border-rose-500/20 text-rose-500",
+  "from-violet-500/15 via-purple-500/10 to-indigo-500/5 border-violet-500/20 text-violet-500",
+  "from-emerald-500/15 via-teal-500/10 to-cyan-500/5 border-emerald-500/20 text-emerald-500",
+];
+
+const currentGradient = gradientThemes[(order - 1) % gradientThemes.length];
+
+const modalId = `project-modal-${order}-${Math.random().toString(36).substring(2, 7)}`;
 ---
 
 <div
-  class={`group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/80 backdrop-blur-md p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-xl ${currentRole.glow} ${spanClass}`}
+  class="group relative rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f1117] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-slate-400 dark:hover:border-white/25 overflow-hidden"
   data-role={role}
-  data-span={effectiveSpan}
 >
-  {effectiveSpan === 'full' ? (
-    <!-- Responsive Full-Width Showcase Bento Card Layout -->
-    <div class="flex flex-col md:grid md:grid-cols-12 md:gap-6 lg:gap-8 items-stretch w-full">
-      <!-- Left Column: Primary Case Study Details -->
-      <div class="md:col-span-7 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
-        <div>
-          <!-- Card Header -->
-          <div class="flex items-center justify-between gap-3 mb-4">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border font-medium ${currentRole.badge}`}>
-                <span class={`w-1.5 h-1.5 rounded-full ${currentRole.dot}`}></span>
-                <span>{role}</span>
-              </span>
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 font-medium">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span>Telemetry & Recovery Mesh</span>
-              </span>
-            </div>
-
-            <!-- Action Links -->
-            <div class="flex items-center gap-2">
-              {github && (
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-sm"
-                  title="Inspect GitHub Repository"
-                  aria-label={`${title} GitHub Repository`}
-                >
-                  <Github class="w-4 h-4" />
-                </a>
-              )}
-              {demo && (
-                <a
-                  href={demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 transition-colors shadow-sm"
-                  title="Launch Live Production Target"
-                  aria-label={`${title} Live Demo`}
-                >
-                  <ArrowUpRight class="w-4 h-4" />
-                </a>
-              )}
-            </div>
-          </div>
-
-          <!-- Title -->
-          <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
-            {title}
-          </h3>
-
-          <!-- Impact Metric Badge -->
-          <div class="mt-3.5 inline-flex items-start sm:items-center gap-2 p-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-xs font-mono w-full">
-            <Zap class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
-            <div class="leading-snug">
-              <span data-i18n="projects.impactLabel" class="text-slate-600 dark:text-slate-400 font-normal">Engineering Impact: </span>
-              <strong class="font-semibold text-emerald-800 dark:text-emerald-300">{impact}</strong>
-            </div>
-          </div>
-
-          <!-- Description -->
-          <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-            {description}
-          </p>
-        </div>
-
-        <!-- Tech Stack Chips & Action Bar -->
-        <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80 space-y-4">
-          <div class="flex flex-wrap items-center gap-2">
-            {stack.map((item) => (
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 group-hover:border-slate-300 dark:group-hover:border-slate-700 transition-colors">
-                {item}
-              </span>
-            ))}
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="flex flex-wrap items-center gap-2.5 pt-1">
-            <button
-              type="button"
-              onclick={`document.getElementById('${modalId}').showModal()`}
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-medium hover:bg-cyan-500/20 transition-colors cursor-pointer shadow-sm"
-            >
-              <FileText class="w-3.5 h-3.5" />
-              <span data-i18n="projects.btnWriteup">Architecture Writeup</span>
-            </button>
-
-            {github && (
-              <a
-                href={github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-mono transition-colors"
-              >
-                <Github class="w-3.5 h-3.5" />
-                <span data-i18n="projects.btnRepo">GitHub Repo</span>
-              </a>
-            )}
-
-            {demo && (
-              <a
-                href={demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300 text-xs font-mono transition-colors"
-              >
-                <ArrowUpRight class="w-3.5 h-3.5" />
-                <span data-i18n="projects.btnDemo">Live Target</span>
-              </a>
-            )}
-          </div>
-        </div>
+  <!-- Card Header Visual Bar (App Mockup Aesthetic) -->
+  <div class={`p-5 pb-4 bg-gradient-to-br ${currentGradient} border-b border-slate-100 dark:border-white/5`}>
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <!-- 3 Minimalist Mac-style Window Dots -->
+      <div class="flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80 inline-block"></span>
       </div>
 
-      <!-- Right Column: SRE Telemetry & Live Incident Recovery Status HUD -->
-      <div class="md:col-span-5 lg:col-span-5 xl:col-span-4 flex flex-col justify-between mt-6 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800/80 md:pl-6 lg:pl-8">
-        <div class="rounded-xl border border-slate-200 dark:border-slate-800/90 bg-slate-50/70 dark:bg-slate-900/60 p-4 sm:p-5 flex flex-col justify-between space-y-4">
-          <!-- HUD Header -->
-          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div class="flex items-center gap-2">
-              <Activity class="w-4 h-4 text-emerald-500 animate-pulse" />
-              <span class="text-xs font-mono font-semibold text-slate-800 dark:text-slate-200">
-                SRE Telemetry Node
-              </span>
-            </div>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-medium">
-              HEALTHY (AUTO-HEALING)
-            </span>
-          </div>
+      <!-- Category Pill -->
+      <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white dark:bg-white/10 text-slate-850 dark:text-slate-200 border border-slate-200/60 dark:border-white/10 shadow-sm">
+        <CategoryIcon class="w-3 h-3 text-current" />
+        <span>{category || role}</span>
+      </span>
+    </div>
 
-          <!-- 4 Golden Signals 2x2 Grid -->
-          <div class="grid grid-cols-2 gap-2.5">
-            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
-              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                <span>Latency (p99)</span>
-                <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Normal</span>
-              </div>
-              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
-                18.4ms
-              </div>
-              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
-                SLA target &lt; 45ms
-              </div>
-            </div>
+    <!-- Title and Subtitle -->
+    <div class="mt-2">
+      <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+        {title}
+      </h3>
+      {subtitle && (
+        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
+          {subtitle}
+        </p>
+      )}
+    </div>
+  </div>
 
-            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
-              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                <span>Traffic Rate</span>
-                <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Steady</span>
-              </div>
-              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
-                14.2k <span class="text-[10px] font-normal text-slate-500">req/s</span>
-              </div>
-              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
-                Prometheus 15s scrape
-              </div>
-            </div>
+  <!-- Card Body -->
+  <div class="p-6 flex flex-col justify-between flex-grow space-y-5">
+    <div>
+      <!-- Human-Friendly Description -->
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+        {description}
+      </p>
 
-            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
-              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                <span>Error Ratio</span>
-                <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Nominal</span>
-              </div>
-              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
-                0.001%
-              </div>
-              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
-                SLO 99.99% target
-              </div>
-            </div>
-
-            <div class="p-2.5 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
-              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                <span>Saturation</span>
-                <span class="text-violet-600 dark:text-violet-400 font-semibold">Optimal</span>
-              </div>
-              <div class="text-base font-bold font-mono text-slate-900 dark:text-white mt-1">
-                38% <span class="text-[10px] font-normal text-slate-500">CPU</span>
-              </div>
-              <div class="text-[9px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
-                52% RAM footprint
-              </div>
-            </div>
-          </div>
-
-          <!-- Incident Recovery Status Badge -->
-          <div class="p-2.5 rounded-lg border border-cyan-500/20 bg-cyan-500/5 dark:bg-cyan-950/20 text-xs font-mono space-y-1">
-            <div class="flex items-center justify-between text-[11px] text-cyan-800 dark:text-cyan-300 font-semibold">
-              <span class="flex items-center gap-1.5">
-                <ShieldCheck class="w-3.5 h-3.5 text-emerald-500" />
-                Auto-Recovery Mesh:
-              </span>
-              <span class="text-emerald-600 dark:text-emerald-400">Standby (0 Faults)</span>
-            </div>
-            <p class="text-[10px] text-slate-600 dark:text-slate-400 leading-tight">
-              Systemd Watchdog heartbeat active • MTTD &lt; 45s webhook escalation configured.
-            </p>
-          </div>
+      <!-- Real Business Impact Badge -->
+      <div class="mt-4 p-3 rounded-2xl bg-emerald-500/10 dark:bg-emerald-950/30 border border-emerald-500/20 text-emerald-850 dark:text-emerald-300 text-xs flex items-start gap-2.5">
+        <Zap class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+        <div class="leading-relaxed">
+          <span class="font-bold text-slate-800 dark:text-slate-200 block sm:inline">Manfaat Nyata: </span>
+          <span class="font-medium">{impact}</span>
         </div>
       </div>
     </div>
-  ) : (
-    <!-- Standard Bento Card Layout (Wide / Normal) -->
-    <div class="flex flex-col justify-between h-full">
-      <div>
-        <!-- Card Header -->
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border font-medium ${currentRole.badge}`}>
-            <span class={`w-1.5 h-1.5 rounded-full ${currentRole.dot}`}></span>
-            <span>{role}</span>
+
+    <!-- Tech Stack Chips -->
+    <div class="space-y-4 pt-3 border-t border-slate-100 dark:border-white/5">
+      <div class="flex flex-wrap items-center gap-1.5">
+        {stack.map((item) => (
+          <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-700 dark:text-slate-300">
+            {item}
           </span>
-
-          <!-- Action Links -->
-          <div class="flex items-center gap-2">
-            {github && (
-              <a
-                href={github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-sm"
-                title="Inspect GitHub Repository"
-                aria-label={`${title} GitHub Repository`}
-              >
-                <Github class="w-4 h-4" />
-              </a>
-            )}
-            {demo && (
-              <a
-                href={demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/30 transition-colors shadow-sm"
-                title="Launch Live Production Target"
-                aria-label={`${title} Live Demo`}
-              >
-                <ArrowUpRight class="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
-
-        <!-- Title -->
-        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
-          {title}
-        </h3>
-
-        <!-- Impact Metric Badge -->
-        <div class="mt-3.5 inline-flex items-start sm:items-center gap-2 p-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-xs font-mono w-full">
-          <Zap class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
-          <div class="leading-snug">
-            <span data-i18n="projects.impactLabel" class="text-slate-600 dark:text-slate-400 font-normal">Engineering Impact: </span>
-            <strong class="font-semibold text-emerald-800 dark:text-emerald-300">{impact}</strong>
-          </div>
-        </div>
-
-        <!-- Description -->
-        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-          {description}
-        </p>
+        ))}
       </div>
 
-      <!-- Tech Stack Chips & Action Bar -->
-      <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80 space-y-4">
-        <div class="flex flex-wrap items-center gap-2">
-          {stack.map((item) => (
-            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 group-hover:border-slate-300 dark:group-hover:border-slate-700 transition-colors">
-              {item}
-            </span>
-          ))}
-        </div>
+      <!-- Action Buttons (View Details, Live Demo, GitHub) -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+        <button
+          type="button"
+          onclick={`document.getElementById('${modalId}').showModal()`}
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:opacity-90 transition-all cursor-pointer shadow-sm active:scale-95"
+        >
+          <FileText class="w-3.5 h-3.5" />
+          <span data-i18n="projects.btnWriteup">Lihat Detail</span>
+        </button>
 
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap items-center gap-2.5 pt-1">
-          <button
-            type="button"
-            onclick={`document.getElementById('${modalId}').showModal()`}
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-medium hover:bg-cyan-500/20 transition-colors cursor-pointer shadow-sm"
-          >
-            <FileText class="w-3.5 h-3.5" />
-            <span data-i18n="projects.btnWriteup">Architecture Writeup</span>
-          </button>
-
+        <div class="flex items-center gap-1.5">
           {github && (
             <a
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-mono transition-colors"
+              class="p-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors shadow-sm"
+              title="Lihat Kode di GitHub"
+              aria-label={`${title} GitHub`}
             >
-              <Github class="w-3.5 h-3.5" />
-              <span data-i18n="projects.btnRepo">GitHub Repo</span>
+              <Github class="w-4 h-4" />
             </a>
           )}
-
           {demo && (
             <a
               href={demo}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300 text-xs font-mono transition-colors"
+              class="inline-flex items-center gap-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-semibold transition-colors shadow-sm"
+              title="Coba Langsung"
+              aria-label={`${title} Live Demo`}
             >
+              <span data-i18n="projects.btnDemo">Demo</span>
               <ArrowUpRight class="w-3.5 h-3.5" />
-              <span data-i18n="projects.btnDemo">Live Target</span>
             </a>
           )}
         </div>
       </div>
     </div>
-  )}
+  </div>
 
-  <!-- Sleek Architecture Writeup Modal Dialog -->
+  <!-- Interactive Detail Modal (User-Friendly for Non-IT) -->
   <dialog
     id={modalId}
-    class="backdrop:bg-black/75 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e] text-slate-800 dark:text-slate-200 p-0 max-w-2xl w-full shadow-2xl m-auto"
+    class="backdrop:bg-slate-950/80 backdrop:backdrop-blur-md rounded-3xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#0c0e14] text-slate-900 dark:text-slate-100 p-0 w-full max-w-2xl shadow-2xl overflow-hidden m-auto"
   >
-    <div class="p-6 sm:p-7 space-y-5">
+    <div class="p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto">
       <!-- Modal Header -->
-      <div class="flex items-start justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+      <div class="flex items-start justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-5">
         <div>
-          <span class={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono border font-medium mb-2 ${currentRole.badge}`}>
-            {role}
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 mb-2">
+            <CategoryIcon class="w-3.5 h-3.5" />
+            <span>{category || role}</span>
           </span>
-          <h4 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+          <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             {title}
-          </h4>
+          </h3>
+          {subtitle && (
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              {subtitle}
+            </p>
+          )}
         </div>
         <button
           type="button"
           onclick={`document.getElementById('${modalId}').close()`}
-          class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
-          aria-label="Close Architecture Modal"
+          class="p-2 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer shrink-0"
+          aria-label="Tutup Jendela"
         >
           <X class="w-4 h-4" />
         </button>
       </div>
 
-      <!-- Modal Content Body -->
-      <div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-sans">
-        <div class="p-3.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 font-mono text-xs">
-          <strong>Measured Result: </strong> {impact}
+      <!-- Human-Friendly Breakdown -->
+      <div class="space-y-4">
+        <!-- 1. The Challenge -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+          <div class="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-sm mb-1.5">
+            <span class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs">🎯</span>
+            <span>Tantangan & Kebutuhan Bisnis:</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Banyak pemilik usaha menghadapi kendala sistem lambat, pencatatan manual yang rawan keliru, atau proses checkout yang rumit sehingga calon pembeli batal bertransaksi.
+          </p>
         </div>
 
-        <p>{description}</p>
+        <!-- 2. The Solution -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+          <div class="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-sm mb-1.5">
+            <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xs">💡</span>
+            <span>Solusi Yang Dibuat:</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            {description}
+          </p>
+        </div>
 
-        <div>
-          <h5 class="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Production Tech Stack</h5>
+        <!-- 3. Measurable Impact -->
+        <div class="p-4 rounded-2xl bg-emerald-500/10 dark:bg-emerald-950/30 border border-emerald-500/25">
+          <div class="flex items-center gap-2 text-emerald-850 dark:text-emerald-300 font-bold text-sm mb-1.5">
+            <CheckCircle2 class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span>Hasil Nyata untuk Bisnis:</span>
+          </div>
+          <p class="text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 font-medium leading-relaxed">
+            {impact}
+          </p>
+        </div>
+
+        <!-- 4. Technical Specs for Developers/HR -->
+        <div class="p-4 rounded-2xl bg-slate-100/70 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-2">
+            Teknologi & Framework yang Digunakan:
+          </span>
           <div class="flex flex-wrap gap-1.5">
             {stack.map((item) => (
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200">
                 {item}
               </span>
             ))}
@@ -412,26 +231,38 @@ const modalId = `modal-${Math.random().toString(36).substring(2, 9)}`;
       </div>
 
       <!-- Modal Footer -->
-      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-        <span class="text-xs font-mono text-slate-400">Architecture Case Study</span>
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
+        <button
+          type="button"
+          onclick={`document.getElementById('${modalId}').close()`}
+          class="px-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
+        >
+          Tutup
+        </button>
+
         <div class="flex items-center gap-2">
           {github && (
             <a
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-xs font-bold hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
             >
-              Inspect Source
+              <Github class="w-3.5 h-3.5" />
+              <span>GitHub</span>
             </a>
           )}
-          <button
-            type="button"
-            onclick={`document.getElementById('${modalId}').close()`}
-            class="px-4 py-1.5 rounded-lg bg-cyan-500 text-slate-950 text-xs font-mono font-bold hover:bg-cyan-400 transition-colors cursor-pointer"
-          >
-            Close
-          </button>
+          {demo && (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 text-xs font-bold hover:opacity-90 transition-all"
+            >
+              <span>Buka Demo</span>
+              <ArrowUpRight class="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
       </div>
     </div>

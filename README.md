@@ -1,7 +1,7 @@
 # 🚀 Devan Regiana - Engineering Portfolio
 
 > **Production-Grade Portfolio** untuk Full-Stack Software Engineer & DevOps / Site Reliability Engineer (SRE).  
-> Dibangun dengan arsitektur modern berkecepatan tinggi, minim JavaScript (*zero-bundle overhead*), ramah SEO, dan siap skala produksi.
+> Dibangun dengan arsitektur modern berkecepatan tinggi, minim JavaScript (_zero-bundle overhead_), ramah SEO, dan siap skala produksi.
 
 [![Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
@@ -11,6 +11,7 @@
 ---
 
 ## 📌 Daftar Isi
+
 1. [Tentang Website Ini](#-tentang-website-ini)
 2. [Fitur-Fitur Utama](#-fitur-fitur-utama)
 3. [Tech Stack & Penjelasannya](#-tech-stack--penjelasannya)
@@ -25,25 +26,26 @@
 
 ## 📖 Tentang Website Ini
 
-Website ini adalah **portofolio profesional milik Devan Regiana**, seorang *Full-Stack Software Engineer* dan *DevOps / SRE Architect*. 
+Website ini adalah **portofolio profesional milik Devan Regiana**, seorang _Full-Stack Software Engineer_ dan _DevOps / SRE Architect_.
 
-Berbeda dengan portofolio web biasa yang hanya menampilkan daftar screenshot, website ini dirancang layaknya sistem level produksi (*production-grade*):
-- Menampilkan **studi kasus mendalam** (*case studies*) tentang arsitektur sistem, skalabilitas, dan optimasi performa.
-- Memberikan bukti nyata penerapan standar industri seperti *Linux server hardening*, *decoupled socket bridges*, *zero-downtime deployment*, dan *microservices*.
+Berbeda dengan portofolio web biasa yang hanya menampilkan daftar screenshot, website ini dirancang layaknya sistem level produksi (_production-grade_):
+
+- Menampilkan **studi kasus mendalam** (_case studies_) tentang arsitektur sistem, skalabilitas, dan optimasi performa.
+- Memberikan bukti nyata penerapan standar industri seperti _Linux server hardening_, _decoupled socket bridges_, _zero-downtime deployment_, dan _microservices_.
 - Dirancang dengan kecepatan akses maksimal menggunakan teknik **Static Site Generation (SSG)** sehingga halaman terbuka instan tanpa jeda loading yang berat.
 
 ---
 
 ## ✨ Fitur-Fitur Utama
 
-- ⚡ **Super Cepat & Ringan (Zero-JS by Default)**: Halaman dirender menjadi HTML murni saat proses *build*, sehingga browser tidak perlu memproses script JavaScript yang berat.
-- 🍱 **Bento Grid Case Studies**: Tampilan portofolio modern bergaya *Bento Box* dengan filter kategori interaktif (*All*, *Full-Stack*, *DevOps/SRE*, *Hybrid*).
+- ⚡ **Super Cepat & Ringan (Zero-JS by Default)**: Halaman dirender menjadi HTML murni saat proses _build_, sehingga browser tidak perlu memproses script JavaScript yang berat.
+- 🍱 **Bento Grid Case Studies**: Tampilan portofolio modern bergaya _Bento Box_ dengan filter kategori interaktif (_All_, _Full-Stack_, _DevOps/SRE_, _Hybrid_).
 - 🔍 **Interactive Architecture Modal**: Setiap proyek dilengkapi pop-up modal detail yang menampilkan diagram arsitektur, tantangan teknis, metrik dampak nyata, dan tautan repositori GitHub.
-- 🖥️ **Live Simulated Terminal**: Simulasi *pipeline deployment* di bagian Hero yang memperlihatkan alur kerja pengujian otomatis, *linting*, dan *healthcheck*.
+- 🖥️ **Live Simulated Terminal**: Simulasi _pipeline deployment_ di bagian Hero yang memperlihatkan alur kerja pengujian otomatis, _linting_, dan _healthcheck_.
 - 🌐 **Dukungan Multi-Bahasa (i18n)**: Pengunjung dapat berganti bahasa secara instan antara **Bahasa Indonesia** dan **English** hanya dengan satu klik tanpa reload halaman.
-- 🌓 **Dark & Light Mode**: Tema gelap/terang otomatis menyesuaikan preferensi sistem operasi pengguna, dilengkapi skrip *anti-flicker* (anti-FOUC) dan penyimpanan pilihan ke *Local Storage*.
-- 📩 **Formulir Kontak Siap Pakai**: Terhubung langsung ke layanan *Web3Forms* sehingga pesan dari recruiter atau klien langsung masuk ke email pengembang tanpa perlu server backend khusus.
-- 📋 **One-Click Copy Email**: Tombol praktis untuk menyalin alamat email langsung ke *clipboard* pengguna.
+- 🌓 **Dark & Light Mode**: Tema gelap/terang otomatis menyesuaikan preferensi sistem operasi pengguna, dilengkapi skrip _anti-flicker_ (anti-FOUC) dan penyimpanan pilihan ke _Local Storage_.
+- 📩 **Formulir Kontak Siap Pakai**: Terhubung langsung ke layanan _Web3Forms_ sehingga pesan dari recruiter atau klien langsung masuk ke email pengembang tanpa perlu server backend khusus.
+- 📋 **One-Click Copy Email**: Tombol praktis untuk menyalin alamat email langsung ke _clipboard_ pengguna.
 - 🎯 **SEO & OpenGraph Lengkap**: Dilengkapi metadata lengkap, Twitter Card, OpenGraph image, dan Schema.org (JSON-LD) agar mudah diindeks oleh mesin pencari seperti Google.
 
 ---
@@ -52,18 +54,18 @@ Berbeda dengan portofolio web biasa yang hanya menampilkan daftar screenshot, we
 
 Berikut adalah daftar teknologi yang digunakan dalam pembuatan proyek ini beserta alasan pemilihannya dengan penjelasan yang mudah dipahami:
 
-| Kategori | Teknologi | Peran & Alasan Penggunaan |
-| :--- | :--- | :--- |
-| **Framework Web** | **Astro 5** (`astro: ^5.18.2`) | Framework modern untuk membuat website berbasis konten dengan arsitektur *"Islands Architecture"*. Astro merender halaman menjadi file HTML statis saat di-build, sehingga website sangat cepat dan hemat kuota pengunjung. |
-| **Styling & CSS** | **Tailwind CSS v3** (`tailwindcss: ^3.4.17`) | Framework CSS utility-first yang mempermudah pembuatan desain kustom modern, responsif untuk semua ukuran layar (HP, tablet, laptop), serta memiliki dukungan *Dark Mode* bawaan yang rapi. |
-| **Integrasi Styling** | **@astrojs/tailwind** (`^6.0.2`) | Plugin resmi dari tim Astro untuk mengintegrasikan Tailwind CSS secara otomatis tanpa konfigurasi yang rumit. |
-| **Ikon UI** | **Lucide Astro** (`^0.556.0`) | Koleksi ikon SVG modern yang sangat bersih, konsisten, dan ringan karena hanya ikon yang dipakai saja yang disertakan ke dalam kode akhir (*tree-shaking*). |
-| **Manajemen Konten** | **Astro Content Collections** | Fitur bawaan Astro untuk mengelola file studi kasus (format Markdown `.md`). Memiliki validasi skema tipe data ketat menggunakan **Zod** untuk mencegah kesalahan penulisan data proyek. |
-| **Formulir Kontak** | **Web3Forms API** | Layanan formulir *serverless*. Memungkinkan formulir kontak mengirimkan email langsung ke inbox pemilik tanpa perlu membuat server backend atau database tambahan. |
-| **Tipografi** | **Google Fonts (Inter & JetBrains Mono)** | Kombinasi font *Inter* (untuk tampilan tulisan antarmuka yang bersih dan mudah dibaca) serta *JetBrains Mono* (untuk teks bertema kode, terminal, dan data teknis). |
-| **Hosting & CDN** | **Cloudflare Pages** | Layanan hosting global di jaringan *Edge Cloudflare* yang super cepat, aman dari serangan DDoS, dan memiliki uptime sangat tinggi. |
-| **Deployment CLI** | **Wrangler** (`wrangler.json`) | Alat baris perintah (*CLI*) resmi dari Cloudflare untuk mengelola konfigurasi dan penerbitan berkas statis (`dist/`). |
-| **Otomatisasi CI/CD** | **GitHub Actions** (`.github/workflows/deploy.yml`) | Sistem otomatisasi yang bertugas melakukan instalasi, pengetesan, kompilasi (*build*), dan pengunggahan website ke Cloudflare Pages secara otomatis setiap kali ada pembaruan kode di branch `main`. |
+| Kategori              | Teknologi                                           | Peran & Alasan Penggunaan                                                                                                                                                                                                   |
+| :-------------------- | :-------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Framework Web**     | **Astro 5** (`astro: ^5.18.2`)                      | Framework modern untuk membuat website berbasis konten dengan arsitektur _"Islands Architecture"_. Astro merender halaman menjadi file HTML statis saat di-build, sehingga website sangat cepat dan hemat kuota pengunjung. |
+| **Styling & CSS**     | **Tailwind CSS v3** (`tailwindcss: ^3.4.17`)        | Framework CSS utility-first yang mempermudah pembuatan desain kustom modern, responsif untuk semua ukuran layar (HP, tablet, laptop), serta memiliki dukungan _Dark Mode_ bawaan yang rapi.                                 |
+| **Integrasi Styling** | **@astrojs/tailwind** (`^6.0.2`)                    | Plugin resmi dari tim Astro untuk mengintegrasikan Tailwind CSS secara otomatis tanpa konfigurasi yang rumit.                                                                                                               |
+| **Ikon UI**           | **Lucide Astro** (`^0.556.0`)                       | Koleksi ikon SVG modern yang sangat bersih, konsisten, dan ringan karena hanya ikon yang dipakai saja yang disertakan ke dalam kode akhir (_tree-shaking_).                                                                 |
+| **Manajemen Konten**  | **Astro Content Collections**                       | Fitur bawaan Astro untuk mengelola file studi kasus (format Markdown `.md`). Memiliki validasi skema tipe data ketat menggunakan **Zod** untuk mencegah kesalahan penulisan data proyek.                                    |
+| **Formulir Kontak**   | **Web3Forms API**                                   | Layanan formulir _serverless_. Memungkinkan formulir kontak mengirimkan email langsung ke inbox pemilik tanpa perlu membuat server backend atau database tambahan.                                                          |
+| **Tipografi**         | **Google Fonts (Inter & JetBrains Mono)**           | Kombinasi font _Inter_ (untuk tampilan tulisan antarmuka yang bersih dan mudah dibaca) serta _JetBrains Mono_ (untuk teks bertema kode, terminal, dan data teknis).                                                         |
+| **Hosting & CDN**     | **Cloudflare Pages**                                | Layanan hosting global di jaringan _Edge Cloudflare_ yang super cepat, aman dari serangan DDoS, dan memiliki uptime sangat tinggi.                                                                                          |
+| **Deployment CLI**    | **Wrangler** (`wrangler.json`)                      | Alat baris perintah (_CLI_) resmi dari Cloudflare untuk mengelola konfigurasi dan penerbitan berkas statis (`dist/`).                                                                                                       |
+| **Otomatisasi CI/CD** | **GitHub Actions** (`.github/workflows/deploy.yml`) | Sistem otomatisasi yang bertugas melakukan instalasi, pengetesan, kompilasi (_build_), dan pengunggahan website ke Cloudflare Pages secara otomatis setiap kali ada pembaruan kode di branch `main`.                        |
 
 ---
 
@@ -117,11 +119,15 @@ devr-portfolio/
 Sebelum menjalankan proyek ini di komputer lokal, pastikan Anda telah menginstal:
 
 1. **Node.js**: Versi `20.x` atau lebih baru (Disarankan versi LTS).  
-   *Cek versi Node.js dengan perintah:*
+   _Cek versi Node.js dengan perintah:_
    ```bash
    node -v
    ```
-2. **Package Manager**: `npm` (bawaan dari instalasi Node.js), atau opsi lain seperti `pnpm` / `yarn`.
+2. **Package Manager**: `pnpm` (disarankan untuk kecepatan maksimal) atau `npm`.
+   _Instal pnpm jika belum ada:_
+   ```bash
+   npm install -g pnpm
+   ```
 3. **Git**: Untuk mendownload atau mengelola repositori kode.
 
 ---
@@ -131,46 +137,62 @@ Sebelum menjalankan proyek ini di komputer lokal, pastikan Anda telah menginstal
 Ikuti langkah-langkah mudah berikut untuk menjalankan proyek di komputer Anda:
 
 ### 1. Clone Repositori
+
 Buka terminal dan unduh kode sumber proyek:
+
 ```bash
 git clone https://github.com/devanscreate/devr-portfolio.git
 cd devr-portfolio
 ```
 
 ### 2. Pasang Semua Dependensi
+
 Jalankan perintah berikut untuk mengunduh semua library yang diperlukan:
+
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3. Siapkan File Konfigurasi Lingkungan (`.env`)
+
 Salin atau buat file `.env` di folder utama proyek (lihat detail pada bagian selanjutnya):
+
 ```env
 PUBLIC_WEB3FORMS_ACCESS_KEY="masukkan_access_key_web3forms_anda"
 ```
 
 ### 4. Jalankan Server Pengembangan (Development Mode)
+
 Jalankan perintah berikut untuk memulai server lokal:
+
 ```bash
-npm run dev
+pnpm dev
 ```
+
 Setelah perintah dijalankan, buka browser Anda dan akses alamat:
+
 ```
 http://localhost:4321
 ```
-> 💡 *Fitur Hot-Reload aktif otomatis. Setiap perubahan pada file kode akan langsung terlihat di browser tanpa perlu me-refresh manual.*
+
+> 💡 _Fitur Hot-Reload aktif otomatis. Setiap perubahan pada file kode akan langsung terlihat di browser tanpa perlu me-refresh manual._
 
 ### 5. Membuat Versi Produksi (Build)
+
 Untuk menguji proses kompilasi sebelum di-deploy ke server:
+
 ```bash
-npm run build
+pnpm build
 ```
+
 Hasil file statis yang siap di-deploy akan dibuat di folder `dist/`.
 
 ### 6. Menjalankan Preview Hasil Build
+
 Untuk melihat hasil build produksi di server lokal:
+
 ```bash
-npm run preview
+pnpm preview
 ```
 
 ---
@@ -179,7 +201,7 @@ npm run preview
 
 Proyek ini menggunakan variabel lingkungan untuk mengamankan integrasi dengan layanan eksternal.
 
-Buat file bernama `.env` di direktori *root* (sejajar dengan `package.json`), lalu isi dengan konfigurasi berikut:
+Buat file bernama `.env` di direktori _root_ (sejajar dengan `package.json`), lalu isi dengan konfigurasi berikut:
 
 ```env
 # Kunci Akses Web3Forms untuk menerima pesan dari formulir kontak
@@ -187,9 +209,10 @@ PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key_here
 ```
 
 ### Cara Mendapatkan Kunci Web3Forms (Gratis):
+
 1. Kunjungi situs resmi [https://web3forms.com](https://web3forms.com).
 2. Masukkan alamat email tujuan tempat Anda ingin menerima pesan kontak.
-3. Kunci akses (*Access Key*) akan langsung dikirimkan ke email Anda.
+3. Kunci akses (_Access Key_) akan langsung dikirimkan ke email Anda.
 4. Salin kunci tersebut dan tempelkan pada nilai `PUBLIC_WEB3FORMS_ACCESS_KEY` di dalam file `.env`.
 
 > ⚠️ **Catatan Penting**: Di Astro, variabel lingkungan yang diawali dengan kata `PUBLIC_` dapat dibaca oleh kode di sisi browser (klien).
@@ -201,16 +224,19 @@ PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key_here
 Proyek ini telah dikonfigurasi untuk ter-deploy secara otomatis ke **Cloudflare Pages** melalui **GitHub Actions**.
 
 ### Alur Kerja Deployment:
+
 1. Setiap kali Anda melakukan `git push` ke branch `main`, GitHub Actions akan otomatis memicu workflow di `.github/workflows/deploy.yml`.
 2. Server GitHub Actions akan:
-   - Menyiapkan runtime Node.js v20.
-   - Menginstal dependensi melalui `npm ci`.
-   - Mengompilasi kode menjadi berkas statis dengan `npm run build`.
+   - Menyiapkan runtime Node.js v20 dan pnpm.
+   - Menginstal dependensi melalui `pnpm install --frozen-lockfile`.
+   - Mengompilasi kode menjadi berkas statis dengan `pnpm run build`.
    - Mengunggah folder `dist/` ke Cloudflare Pages secara aman.
 3. Website akan langsung aktif dalam hitungan detik di URL domain Cloudflare Anda.
 
 ### Rahasia GitHub (GitHub Repository Secrets) yang Dibutuhkan:
+
 Jika Anda ingin menduplikasi deployment ini ke akun Cloudflare pribadi, tambahkan secrets berikut di menu **Settings > Secrets and variables > Actions** di repositori GitHub Anda:
+
 - `CLOUDFLARE_API_TOKEN`: Token API Cloudflare dengan izin akses Cloudflare Pages.
 - `CLOUDFLARE_ACCOUNT_ID`: ID Akun Cloudflare Anda.
 

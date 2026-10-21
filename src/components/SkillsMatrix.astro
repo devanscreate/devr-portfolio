@@ -1,119 +1,130 @@
 ---
-import { Code2, Server, Cloud, Database, Network, ShieldCheck, Terminal, Cpu } from 'lucide-astro';
+import { Code2, Server, Cloud, Database, Sparkles, CheckCircle2 } from 'lucide-astro';
 
-const categorizedSkills = [
+const services = [
   {
-    title: "Frontend Engineering",
+    titleKey: "skills.catFrontend",
+    title: "Tampilan Web & Antarmuka (Frontend)",
+    desc: "Menciptakan tampilan visual yang memanjakan mata pembeli, nyaman diakses lewat smartphone, dan memandu pengunjung dengan mudah.",
     icon: Code2,
-    accent: "text-cyan-500 dark:text-cyan-400",
-    badge: "Layer 7 UI",
+    badge: "Tampilan Ramah Pengguna",
+    accent: "text-cyan-500",
+    bgAccent: "from-cyan-500/10 to-transparent",
     skills: [
-      { name: "Vue.js", level: "Production Core / Pinia / Vue Router" },
-      { name: "Tailwind CSS", level: "Design Systems & Responsive UIs" },
-      { name: "TypeScript", level: "Strict Typing & Client Contracts" },
-      { name: "React", level: "Single-Page Applications & Hooks" },
-      { name: "HTML5 Canvas", level: "High-FPS Data Visualization" },
+      { name: "Vue.js & React", benefit: "Halaman interaktif cepat tanpa reload lambat" },
+      { name: "Tailwind CSS", benefit: "Desain responsif dan rapi di semua gadget" },
+      { name: "TypeScript", benefit: "Kode stabil dan minim potensi error" },
+      { name: "UI/UX Simpel", benefit: "Mudah dipahami oleh orang awam sekalipun" },
     ],
   },
   {
-    title: "Backend & Systems Logic",
+    titleKey: "skills.catBackend",
+    title: "Sistem & Logika Data (Backend)",
+    desc: "Jantung operasional aplikasi yang memproses pesanan, menghitung laporan keuangan, mengamankan kata sandi, dan menghubungkan pembayaran.",
     icon: Server,
-    accent: "text-blue-500 dark:text-blue-400",
-    badge: "Core Services",
+    badge: "Otomatisasi Bisnis",
+    accent: "text-blue-500",
+    bgAccent: "from-blue-500/10 to-transparent",
     skills: [
-      { name: "Python (FastAPI)", level: "Async APIs & Worker Daemons" },
-      { name: "PHP (Laravel)", level: "Enterprise MVC & Eloquent" },
-      { name: "WebSockets & TCP Sockets", level: "Real-Time Packet Streaming" },
-      { name: "RESTful API Architecture", level: "OpenAPI Specification Contracts" },
-      { name: "Process Management", level: "Multi-threading & Subprocesses" },
+      { name: "Laravel (PHP)", benefit: "Fondasi sistem perusahaan yang aman dan teruji" },
+      { name: "Python (FastAPI)", benefit: "Pemrosesan data kilat dan automasi tugas" },
+      { name: "Payment Gateway", benefit: "Pembayaran otomatis via QRIS, VA, & E-Wallet" },
+      { name: "Sistem Notifikasi", benefit: "Pemberitahuan otomatis ke WhatsApp & Email" },
     ],
   },
   {
-    title: "Infrastructure & DevOps",
+    titleKey: "skills.catInfra",
+    title: "Hosting Cloud & Server (DevOps)",
+    desc: "Memastikan website bisnis Anda selalu aktif 24 jam nonstop, tahan diserbu pengunjung saat flash sale, dan aman dari peretas.",
     icon: Cloud,
-    accent: "text-violet-500 dark:text-violet-400",
-    badge: "Platform & Cloud",
+    badge: "Kestabilan 24/7",
+    accent: "text-violet-500",
+    bgAccent: "from-violet-500/10 to-transparent",
     skills: [
-      { name: "Linux (Debian / Ubuntu)", level: "Systemd Daemons & Kernel Tuning" },
-      { name: "Nginx Gateway", level: "Reverse Proxy, TLS & Load Balancing" },
-      { name: "Docker & Compose", level: "Multi-Stage Minimal Builds" },
-      { name: "GitOps & CI/CD", level: "Automated GitHub Actions Pipelines" },
-      { name: "Server Hardening", level: "UFW, Fail2ban, Least Privilege" },
+      { name: "Docker Container", benefit: "Aplikasi berjalan konsisten dan anti-crash" },
+      { name: "Linux Ubuntu / Debian", benefit: "Server stabil, hemat daya, dan tahan banting" },
+      { name: "Nginx Gateway", benefit: "Pengatur lalu lintas agar website anti-lemot" },
+      { name: "Backup Otomatis", benefit: "Data perusahaan selalu aman tercadangkan" },
     ],
   },
   {
-    title: "Databases & Networking",
+    titleKey: "skills.catDbNetwork",
+    title: "Basis Data & Integrasi (Data & APIs)",
+    desc: "Menyimpan seluruh data pelanggan dan inventaris secara aman serta menyinkronkan data antar sistem toko online dan kasir fisik.",
     icon: Database,
-    accent: "text-emerald-500 dark:text-emerald-400",
-    badge: "Data & Mesh",
+    badge: "Data Terintegrasi",
+    accent: "text-emerald-500",
+    bgAccent: "from-emerald-500/10 to-transparent",
     skills: [
-      { name: "MySQL / MariaDB", level: "Schema Design, Indexing & Tuning" },
-      { name: "PostgreSQL", level: "Relational Modeling & Transactions" },
-      { name: "Microsoft SQL Server", level: "Enterprise Stored Procedures" },
-      { name: "SSH Tunneling & Reverse Sockets", level: "Encrypted Port-Forwarding" },
-      { name: "Network Routing & DNS", level: "Subnetting, NAT & Cloudflare Edge" },
+      { name: "PostgreSQL & MySQL", benefit: "Penyimpanan data pesanan rapi & terstruktur" },
+      { name: "Redis Caching", benefit: "Akses data super cepat dalam hitungan milidetik" },
+      { name: "Integrasi API", benefit: "Menghubungkan cabang toko & marketplace" },
+      { name: "Enkripsi Modern", benefit: "Privasi dan kerahasiaan data terjamin" },
     ],
   },
 ];
 ---
 
-<section id="skills" class="py-20 border-t border-slate-200 dark:border-slate-850 relative">
+<section id="skills" class="py-20 sm:py-28 border-t border-slate-200 dark:border-white/10 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
-    <div class="flex flex-col items-center text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-widest mb-3 shadow-sm">
-        <Cpu class="w-3.5 h-3.5" />
-        <span data-i18n="skills.badge">Technical Architecture Matrix</span>
+    <div class="flex flex-col items-center text-center mb-14 sm:mb-18">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest mb-3 shadow-sm">
+        <Sparkles class="w-3.5 h-3.5 text-amber-500" />
+        <span data-i18n="skills.badge">Solusi & Kemampuan</span>
       </div>
-      <h2 data-i18n="skills.title" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Categorized Engineering Depth
+      <h2 data-i18n="skills.title" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+        Solusi Digital untuk Bisnis Anda
       </h2>
-      <p data-i18n="skills.subtitle" class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl text-base leading-relaxed">
-        Structured by hands-on production depth across frontend client applications, robust backend services, system internals, and network routing.
+      <p data-i18n="skills.subtitle" class="mt-3 text-slate-600 dark:text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+        Bukan sekadar bahasa pemrograman, tetapi solusi nyata untuk memecahkan masalah operasional dan meningkatkan penjualan Anda.
       </p>
     </div>
 
-    <!-- 4-Grid Categorized Skill Pillars -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-      {categorizedSkills.map((cat) => (
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e]/70 backdrop-blur-md p-6 sm:p-7 space-y-5 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
-          <div class="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-850">
-            <div class="flex items-center gap-3">
-              <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60">
-                <cat.icon class={`w-5 h-5 ${cat.accent}`} />
+    <!-- 4 Clear Solution Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {services.map((svc) => {
+        const Icon = svc.icon;
+        return (
+          <div class="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f1117] p-7 sm:p-8 flex flex-col justify-between hover:border-slate-400 dark:hover:border-white/25 transition-all shadow-sm hover:shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <div class="flex items-center gap-3">
+                  <div class={`w-11 h-11 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center ${svc.accent} group-hover:scale-105 transition-transform`}>
+                    <Icon class="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 data-i18n={svc.titleKey} class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                      {svc.title}
+                    </h3>
+                    <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                      {svc.badge}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-                {cat.title}
-              </h3>
+
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
+                {svc.desc}
+              </p>
+
+              <!-- Benefits List -->
+              <div class="space-y-3 pt-4 border-t border-slate-100 dark:border-white/5">
+                {svc.skills.map((skill) => (
+                  <div class="flex items-start gap-2.5">
+                    <CheckCircle2 class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <div class="text-xs sm:text-sm">
+                      <strong class="font-bold text-slate-900 dark:text-slate-100">{skill.name}</strong>
+                      <span class="text-slate-500 dark:text-slate-400 font-normal"> &mdash; {skill.benefit}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
-              {cat.badge}
-            </span>
           </div>
-
-          <div class="space-y-2.5">
-            {cat.skills.map((skill) => (
-              <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 transition-colors hover:border-slate-300 dark:hover:border-slate-700">
-                <span class="text-sm font-semibold text-slate-800 dark:text-slate-200">{skill.name}</span>
-                <span class="text-xs font-mono text-slate-500 dark:text-slate-400">{skill.level}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <!-- Cross-Cutting Philosophy Bar -->
-    <div class="mt-8 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/40 p-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-600 dark:text-slate-400 shadow-sm">
-      <div class="flex items-center gap-2">
-        <ShieldCheck class="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
-        <span data-i18n="skills.standardsTitle" class="text-slate-800 dark:text-slate-300 font-medium">Core Engineering Standards:</span>
-        <span data-i18n="skills.standardsDesc" class="hidden md:inline">Least Privilege Security &bull; Immutable Deployments &bull; Idempotent Automation</span>
-      </div>
-      <div class="flex items-center gap-3 text-cyan-600 dark:text-cyan-400">
-        <span data-i18n="skills.standardsTag">Zero Magic Deployments &bull; Everything as Code</span>
-      </div>
+        );
+      })}
     </div>
 
   </div>
